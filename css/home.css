@@ -1,0 +1,18 @@
+.box-agendar{
+    position:absolute;
+    top:30%;
+    left:40%;
+    background:rgba(255,255,255,0.5);
+    padding:40px;
+    border-radius:10px;
+}
+.btn-consulta{ 
+    margin-top: 15px; 
+    padding: 12px 25px; 
+    background: #0dbf9b; 
+    border: none; 
+    border-radius: 5px; 
+    color: white; 
+    font-size: 16px; 
+    cursor: pointer; 
+}

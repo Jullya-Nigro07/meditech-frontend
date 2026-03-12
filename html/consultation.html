@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <title>Agendar Consulta - Meditech</title>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <img class="logo" src="/png/logo-meditech.png">
+
+        <ul class="header">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="consultation.html">Marcar consulta</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Cadastrar-se</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<div class="forms">
+
+    <h1>Agendar Consulta</h1>
+
+    <form>
+
+        <label>Tipo de consulta</label>
+        <select required>
+            <option value="">Selecione a especialidade</option>
+            <option>Clínico Geral</option>
+            <option>Cardiologista</option>
+            <option>Dermatologista</option>
+            <option>Ginecologista</option>
+            <option>Oftalmologista</option>
+            <option>Pediatra</option>
+            <option>Ortopedista</option>
+            <option>Neurologista</option>
+            <option>Endocrinologista</option>
+            <option>Psiquiatra</option>
+        </select>
+
+        <label>Médico</label>
+        <select required>
+            <option value="">Selecione um médico</option>
+            <option>Dr. João Silva</option>
+            <option>Dra. Ana Souza</option>
+            <option>Dr. Carlos Oliveira</option>
+        </select>
+
+        <label>Data</label>
+        <input type="date" required>
+
+        <label>Horário</label>
+        <input type="time" required>
+
+        <button type="submit">Agendar</button>
+
+    </form>
+
+</div>
+
+</main>
+
+</body>
+</html>
