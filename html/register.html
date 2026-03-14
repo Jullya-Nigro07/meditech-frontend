@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/register.css">
@@ -9,50 +10,48 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <img class="logo" src="/png/logo-meditech.png">
+            <ul class="header">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="consultation.html">Marcar consulta</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Cadastrar-se</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <nav>
-        <img class="logo" src="/png/logo-meditech.png">
+    <main>
+    <div class="forms">
+        <h1 id="tituloPagina">Cadastro</h1>
+        <form>
+            <input id="nome" type="text" placeholder="Nome" required>
+            <input id="sobrenome" type="text" placeholder="Sobrenome" required>
 
-        <ul class="header">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="consultation.html">Marcar consulta</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Cadastrar-se</a></li>
-        </ul>
-    </nav>
-</header>
+            <label>Data de nascimento</label>
+            <input id="data" type="date" required>
 
-<main>
+            <label>Gênero</label>
+            <select id="genero" required>
+                <option value="">Selecione</option>
+                <option>Feminino</option>
+                <option>Masculino</option>
+                <option>Prefiro não Informar</option>
+                <option>Outro</option>
+            </select>
 
-<div class="forms">
+            <input id="cpf" type="text" placeholder="CPF" required>
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="senha" type="password" placeholder="Senha" required>
 
-    <h1>Cadastro</h1>
+            <button id="botaoCadastrarUser" type="submit">Cadastrar</button>
+        </form>
+    </div>
+    <script src="/js/register.js"></script>
 
-    <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="text" placeholder="Sobrenome" required>
-
-        <label>Data de nascimento</label>
-        <input type="date" required>
-
-        <label>Gênero</label>
-        <select required>
-            <option value="">Selecione</option>
-            <option>Feminino</option>
-            <option>Masculino</option>
-            <option>Outro</option>
-        </select>
-
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Senha" required>
-
-        <button type="submit">Cadastrar</button>
-    </form>
-
-</div>
-
-</main>
+    </main>
 
 </body>
+
 </html>

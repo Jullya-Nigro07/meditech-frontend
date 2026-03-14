@@ -1,72 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/register.css">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <title>Agendar Consulta - Meditech</title>
-</head>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/register.css">
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/layout.css">
+        <title>Agendar Consulta - Meditech</title>
+    </head>
 
-<body>
+    <body>
+        <header>
+            <nav>
+                <img class="logo" src="/png/logo-meditech.png">
+                <ul class="header">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="consultation.html">Marcar consulta</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Cadastrar-se</a></li>
+                </ul>
+            </nav>
+        </header>
 
-<header>
-    <nav>
-        <img class="logo" src="/png/logo-meditech.png">
+        <main>
+            <div class="forms">
+                <h1 id="tituloPagina">Agendar Consulta</h1>
+                <form>
+                    <label>Especialidade</label>
+                    <select id="especialidade">
+                        <option disabled selected>Selecione uma especialidade</option>
+                        <option>Clínico Geral</option>
+                        <option>Cardiologista</option>
+                        <option>Dermatologista</option>
+                        <option>Ginecologista</option>
+                        <option>Oftalmologista</option>
+                        <option>Pediatra</option>
+                        <option>Ortopedista</option>
+                        <option>Neurologista</option>
+                        <option>Endocrinologista</option>
+                        <option>Psiquiatra</option>
+                        <option>Dentista</option>
+                    </select>
 
-        <ul class="header">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="consultation.html">Marcar consulta</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="register.html">Cadastrar-se</a></li>
-        </ul>
-    </nav>
-</header>
+                    <label>Médico</label>
+                    <select id="medico">
+                        <option disabled selected>Selecione um médico</option>
+                    </select>
 
-<main>
 
-<div class="forms">
+                    <label>Data</label>
+                    <input type="date" id="dataConsulta" placeholder="Selecione a data" required data-input>
 
-    <h1>Agendar Consulta</h1>
 
-    <form>
+                    <label>Horário</label>
+                    <select id="horario">
+                        <option disabled selected>Selecione um horário</option>
+                    </select>
 
-        <label>Tipo de consulta</label>
-        <select required>
-            <option value="">Selecione a especialidade</option>
-            <option>Clínico Geral</option>
-            <option>Cardiologista</option>
-            <option>Dermatologista</option>
-            <option>Ginecologista</option>
-            <option>Oftalmologista</option>
-            <option>Pediatra</option>
-            <option>Ortopedista</option>
-            <option>Neurologista</option>
-            <option>Endocrinologista</option>
-            <option>Psiquiatra</option>
-        </select>
-
-        <label>Médico</label>
-        <select required>
-            <option value="">Selecione um médico</option>
-            <option>Dr. João Silva</option>
-            <option>Dra. Ana Souza</option>
-            <option>Dr. Carlos Oliveira</option>
-        </select>
-
-        <label>Data</label>
-        <input type="date" required>
-
-        <label>Horário</label>
-        <input type="time" required>
-
-        <button type="submit">Agendar</button>
-
-    </form>
-
-</div>
-
-</main>
-
-</body>
+                    <button type="submit">Agendar</button>
+                </form>
+            </div>
+        </main>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/especialidade_medico.js"></script>
+    </body>
 </html>
