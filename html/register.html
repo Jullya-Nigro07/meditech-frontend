@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/css/register.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Cadastro - Meditech</title>
 </head>
 
@@ -35,9 +37,16 @@
                         <input id="sobrenome" type="text" placeholder="Sobrenome" required>
 
                         <label>Data de nascimento</label>
-                        <input id="dataNasc" type="date" required>
+                        <input id="dataNasc" type="date" required placeholder="Data Nascimento">
+                        <script>
+                            flatpickr("#dataNasc", {
+                                dateFormat: "Y-m-d",
+                                allowInput: false   // impede digitar manualmente
+                            });
+                        </script>
 
                         <label>Gênero</label>
+                        
                         <select id="genero" required>
                             <option value="">Selecione</option>
                             <option>Feminino</option>
