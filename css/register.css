@@ -1,22 +1,26 @@
-/* register.css */
-
-/* Centraliza o formulário na tela */
+.main-register
+{
+    padding: 5em 0;
+    background-color: #124170;
+}
 .forms {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.95);
+    background: #67C090;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    padding: 40px;
     border-radius: 10px;
-    width: 350px;
+    width: 40em;
+    height: 40em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* Títulos */
 .forms h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #fff;
+    /* width: 50%; */
 }
 
 /* Inputs e selects */
@@ -33,16 +37,19 @@
 .forms label {
     margin-bottom: 5px;
     font-weight: 500;
+    width: 100%;
+    color: #fefefe;
+    font-size: 0.9em;
 }
 
 /* Botão principal */
 .forms button {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
-    background: #0dbf9b;
+    background: #124170;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -57,9 +64,45 @@
     display: block;
     text-align: center;
     margin-top: 12px;
-    color: #0dbf9b;
+    color: #124170;
+    font-size: 0.9em;
 }
 
 .forms a:hover {
     opacity: 0.8;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 85%;
+    text-align: left !important;
+}
+
+select#genero {
+    width: 565px !important;
+}
+
+label {display: flex;align-items: center;}
+
+.forms a:hover {
+    font-size: 0.92em;
+    color: #fff;
+    transition: .5s ease;
+}
+
+.hospital-png {
+    width: 30em;
+}
+
+.hospital-png img {
+    width: 100%;
+}
+
+.container-infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

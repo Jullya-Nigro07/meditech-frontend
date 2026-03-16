@@ -1,11 +1,14 @@
 .box-agendar{
-    position:absolute;
-    top:30%;
-    left:40%;
-    background:rgba(255,255,255,0.8);
+    background: #fff;
     padding:40px;
-    border-radius:10px;
+    border-radius: 20px 0px 0px 20px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
+
 .btn-consulta{ 
     margin-top: 15px; 
     padding: 12px 25px; 
@@ -39,4 +42,32 @@
 .sobre-box p{
     margin-bottom: 15px;
     line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 360px;
+    background: #26667f9e;
+    border-radius: 30px;
+    /* padding: 0px 0em 0px 30px; */
+    /* position: relative; */
+}
+
+.box-info {
+    width: 50%;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.box-info p {
+    width: 85%;
+    letter-spacing: 0.5px;
+    margin-top: 2em;
+}
+
+.box-agendar h1 {
+    color: #124170;
 }
