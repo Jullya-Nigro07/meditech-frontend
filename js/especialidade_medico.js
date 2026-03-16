@@ -68,6 +68,7 @@ const especialidadeMedicos = {
 
 };
 
+
 const selectEspecialidade = document.getElementById("especialidade");
 const selectMedico = document.getElementById("medico");
 const selectHorario = document.getElementById("horario");
@@ -118,11 +119,3 @@ selectHorario.appendChild(option);
 
 });
 
-flatpickr("#data", {
-    dateFormat: "Y-m-d",   // valor enviado para backend
-    altInput: true,        // cria um input alternativo bonito
-    altFormat: "d-m-Y",    // formato visual que o usuário vê
-    disable: [
-        function(date) { return date.getDay() === 0; } // domingos desabilitados
-    ]
-});

@@ -1,4 +1,4 @@
-/* register.css */
+/* login.css */
 
 /* Centraliza o formulário na tela */
 .forms {
@@ -19,20 +19,13 @@
     margin-bottom: 20px;
 }
 
-/* Inputs e selects */
-.forms input,
-.forms select {
+/* Inputs */
+.forms input {
     width: 100%;
     padding: 10px;
     margin-bottom: 12px;
     border-radius: 5px;
     border: 1px solid #ccc;
-}
-
-/* Labels */
-.forms label {
-    margin-bottom: 5px;
-    font-weight: 500;
 }
 
 /* Botão principal */
@@ -52,14 +45,17 @@
     opacity: 0.8;
 }
 
-/* Link de login */
-.forms a {
-    display: block;
+/* Link de cadastro */
+.link-cadastro {
     text-align: center;
     margin-top: 12px;
-    color: #0dbf9b;
 }
 
-.forms a:hover {
+.link-cadastro a {
+    color: #0dbf9b;
+    text-decoration: none;
+}
+
+.link-cadastro a:hover {
     opacity: 0.8;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/register.css">
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/header.css">
     <title>Cadastro - Meditech</title>
 </head>
 
@@ -15,22 +15,22 @@
             <img class="logo" src="/png/logo-meditech.png">
             <ul class="header">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="consultation.html">Marcar consulta</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="register.html">Cadastrar-se</a></li>
+                <li><a href="about.html">Sobre nós</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
     <div class="forms">
-        <h1 id="tituloPagina">Cadastro</h1>
+        <h1 id="tituloPagina">Realize seu Cadastro para Agendar</h1>
         <form>
             <input id="nome" type="text" placeholder="Nome" required>
             <input id="sobrenome" type="text" placeholder="Sobrenome" required>
 
             <label>Data de nascimento</label>
-            <input id="data" type="date" required>
+            <input id="dataNasc" type="date" required>
 
             <label>Gênero</label>
             <select id="genero" required>
@@ -46,10 +46,10 @@
             <input id="senha" type="password" placeholder="Senha" required>
 
             <button id="botaoCadastrarUser" type="submit">Cadastrar</button>
+           <a href="login.html">Já possui cadastro? Vá para o Login</a>
         </form>
     </div>
     <script src="/js/register.js"></script>
-
     </main>
 
 </body>

@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/header.css">
     <title>Login - Meditech</title>
 </head>
 
@@ -15,9 +15,9 @@
             <img class="logo" src="/png/logo-meditech.png">
             <ul class="header">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="consultation.html">Marcar consulta</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="register.html">Cadastrar-se</a></li>
+                <li><a href="about.html">Sobre-nós</a></li>
             </ul>
         </nav>
     </header>
@@ -26,14 +26,15 @@
         <div class="forms">
             <h1>Login</h1>
             <form>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
+                <input id=emailLogin type="email" placeholder="Email" required autocomplete="email">
+                <input id="senhaLogin" type="password" placeholder="Senha" required autocomplete="current-password">
+                <button id=botaoLogin type="submit">Entrar</button>
                 <p class="link-cadastro">Não tem conta?
                     <a href="register.html">Cadastre-se</a>
                 </p>
             </form>
         </div>
+    <script src="/js/login.js"></script>
     </main>
 
 </body>
