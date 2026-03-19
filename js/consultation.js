@@ -1,5 +1,3 @@
-const baseUrl = 'http://127.0.0.1:5000/consultas';
-
 document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
     const navLogin = document.getElementById("nav-login");
@@ -37,7 +35,7 @@ async function criarConsulta(especialidade, medico, data, horario) {
     const token = localStorage.getItem("token");
     const consulta = { especialidade, medico, data, horario };
 
-    const response = await fetch(baseUrl, {
+    const response = await fetch("http://127.0.0.1:5000/consultas", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(consulta)
@@ -57,7 +55,7 @@ async function listagem() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const response = await fetch(baseUrl, {
+    const response = await fetch("http://127.0.0.1:5000/consultas", {
         method: "GET",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
     });

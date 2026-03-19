@@ -1,4 +1,3 @@
-const baseUrl = 'http://127.0.0.1:5000';
 const headers = { 'Content-Type': 'application/json' };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,7 +47,7 @@ async function login(email, senha) {
         senha
     };
 
-    const response = await fetch(baseUrl + '/usuarios/login', {
+    const response = await fetch('http://127.0.0.1:5000/usuarios/login', {
         method: "POST",
         headers,
         body: JSON.stringify(userLogin)
