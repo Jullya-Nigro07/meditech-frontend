@@ -1,6 +1,20 @@
-# MediTech - Plataforma de Consultas Médicas
+# MediTech - Plataforma de Consultas Médicas 🌐 Front-end
 
-Uma plataforma web de agendamento de consultas médicas, desenvolvida como projeto acadêmico.
+![Status](https://img.shields.io/badge/Status-Em%20Andamento-yellow)
+![Linguagem](https://img.shields.io/badge/Linguagem-JavaScript-purple)
+![IDE](https://img.shields.io/badge/IDE-VS%20Code-blue)
+
+---
+
+Uma plataforma web de agendamento de consultas médicas, desenvolvida como projeto acadêmico.  
+A plataforma permite realizar cadastro, login, autenticação, agendamento e listagem de consultas.
+
+🚀 Em breve, novas funcionalidades serão adicionadas, como:
+- Cadastro de administradores e médicos  
+- Listagem de consultas para médicos  
+- Agendamento de exames 
+
+---
 
 ## 📋 Integrantes
 
@@ -11,14 +25,30 @@ Uma plataforma web de agendamento de consultas médicas, desenvolvida como proje
 | Jullya Nigro| 2402577 |
 | Melissa ferreira| 2403008 |
 
+---
+
 ## 🛠️ Tecnologias
 
 - **JavaScript**
 - **HTML**
+- **CSS**
 
+---
 
-## 📁 Estrutura
+## 🚀 API - Backend
 
-`
-A ser definida
-`
+🔗 [Meditech Backend](https://github.com/HumbertoLLFilho/meditech-backend)
+
+### 📥 Clone da API ( Backend )
+```bash
+git clone https://github.com/HumbertoLLFilho/meditech-backend
+```
+
+---
+
+▶️ Como executar
+
+1. Clone o repositório Backend.
+2. Siga as instruções disponíveis no README do backend para rodar a API.
+3. Clone esse repositorio (Frontend).
+4. Após iniciar a API, abra o projeto web utilizando o Open Server.
