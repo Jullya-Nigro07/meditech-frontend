@@ -71,3 +71,26 @@
 .box-agendar h1 {
     color: #124170;
 }
+
+.box-guest h1 {
+    font-size: 1.3em;
+}
+
+.box-guest p {
+    color: #444;
+    font-size: 0.95em;
+    margin: 8px 0 4px;
+    text-align: center;
+}
+
+.link-cadastro-home {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #124170;
+    text-decoration: none;
+}
+
+.link-cadastro-home:hover {
+    text-decoration: underline;
+}

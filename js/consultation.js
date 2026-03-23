@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("token")) {
+        window.location.replace("login.html");
+        return;
+    }
+
     const nomeUsuario = document.getElementById("nomeUsuario");
-    const navLogin = document.getElementById("nav-login");
     const formConsulta = document.getElementById("formConsulta");
     const userJson = localStorage.getItem("user");
 
     if (userJson) {
         const user = JSON.parse(userJson);
         nomeUsuario.innerText = user.nome;
-        navLogin.innerHTML = `<a id="logout-btn">Sair</a>`;
-        document.getElementById("logout-btn").addEventListener("click", logout);
-    } else {
-        navLogin.innerHTML = `<a href="login.html">Login</a>`;
     }
 
     formConsulta.addEventListener("submit", async (e) => {
@@ -89,8 +89,3 @@ function exibirConsultas(consultas) {
     });
 }
 
-function logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.href = "index.html";
-}

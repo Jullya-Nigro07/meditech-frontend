@@ -90,3 +90,29 @@ form h2 {
 .desenho-forms img {
     width: 95%;
 }
+
+.form-popup {
+    display: none;
+    width: 90%;
+    margin: -4px 0 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.form-popup.show {
+    display: block;
+}
+
+.form-popup.error {
+    background: #ffe5e5;
+    border: 1px solid #e85a5a;
+    color: #8f1f1f;
+}
+
+.form-popup.success {
+    background: #e5fff5;
+    border: 1px solid #32a87b;
+    color: #0f5c3f;
+}

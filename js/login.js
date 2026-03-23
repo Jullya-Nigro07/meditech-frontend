@@ -1,4 +1,38 @@
 const headers = { 'Content-Type': 'application/json' };
+let popupTimer;
+
+function exibirPopup(mensagem, tipo = "error") {
+    const popup = document.getElementById("formPopup");
+    if (!popup) return;
+
+    popup.textContent = mensagem;
+    popup.classList.remove("error", "success", "show");
+    popup.classList.add(tipo, "show");
+
+    if (popupTimer) clearTimeout(popupTimer);
+    popupTimer = setTimeout(() => {
+        popup.classList.remove("show");
+    }, 5000);
+}
+
+function limparPopup() {
+    const popup = document.getElementById("formPopup");
+    if (!popup) return;
+
+    popup.classList.remove("show");
+    popup.textContent = "";
+    if (popupTimer) clearTimeout(popupTimer);
+}
+
+function decodeJwtClaims(token) {
+    try {
+        const payload = token.split(".")[1];
+        const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+        return JSON.parse(atob(base64));
+    } catch {
+        return null;
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
@@ -28,14 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (botaoLogin) {
         botaoLogin.addEventListener("click", async (e) => {
             e.preventDefault();
+            limparPopup();
 
             await login(
                 emailLogin.value.trim(),
                 senhaLogin.value.trim()
             );
-
-            emailLogin.value = "";
-            senhaLogin.value = "";
         });
     }
 
@@ -53,29 +85,50 @@ async function login(email, senha) {
         body: JSON.stringify(userLogin)
     });
 
-    const data = await response.json();
+    try {
+        const data = await response.json();
 
-    if (response.ok) {
+        if (response.ok) {
+        const token = data.access_token || data.token || data.jwt;
+
+        if (!token) {
+            exibirPopup("Login efetuado, mas nenhum token JWT foi retornado pela API.", "error");
+            return;
+        }
+
+        const claims = decodeJwtClaims(token);
+        if (!claims) {
+            exibirPopup("Nao foi possivel ler os dados do token. Tente novamente.", "error");
+            return;
+        }
 
         // salvar token
-        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("token", token);
 
-        // salvar usuário
+        // salvar usuário a partir das claims
         localStorage.setItem("user", JSON.stringify({
-            id: data.id,
-            nome: data.nome,
-            sobrenome: data.sobrenome,
-            token: data.access_token
+            nome: claims.nome || claims.name || "",
+            email: claims.email || "",
+            tipo: claims.tipo || claims.role || "",
+            token
         }));
 
         // limpar dados do cadastro automático
         sessionStorage.removeItem("emailCadastro");
         sessionStorage.removeItem("senhaCadastro");
         console.log("Usuário logado:", data);
-        window.location.href = "consultation.html";
+        window.location.href = "index.html";
+        return true;
 
     } else {
         console.error("Erro de login:", data);
-        alert(data.erro || "Email ou senha inválidos");
+        const mensagem = data.erro || "Email ou senha inválidos";
+        exibirPopup(mensagem, "error");
+        return false;
+    }
+    } catch (error) {
+        exibirPopup("Nao foi possivel conectar ao servidor. Verifique sua conexao e tente novamente.", "error");
+        console.error("Erro de rede no login:", error);
+        return false;
     }
 }
