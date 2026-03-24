@@ -1,0 +1,19 @@
+# Claude
+.claude/
+CLAUDE.md
+
+# Claude Flow
+.claude-flow/
+
+# MCP
+.mcp.json
+
+# IDEs
+.idea/
+.vscode/
+
+# Misc
+*.log
+*.tmp
+*.png
+!png/
