@@ -9,8 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const userJson = localStorage.getItem("user");
 
     if (userJson) {
-        const user = JSON.parse(userJson);
-        nomeUsuario.innerText = user.nome;
+        try {
+            const user = JSON.parse(userJson);
+            nomeUsuario.innerText = user.nome;
+        } catch {
+            localStorage.removeItem("user");
+        }
     }
 
     formConsulta.addEventListener("submit", async (e) => {
@@ -31,23 +35,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+let popupTimer;
+function exibirPopup(mensagem, tipo = "error") {
+    const popup = document.getElementById("formPopup");
+    if (!popup) return;
+    popup.textContent = mensagem;
+    popup.classList.remove("error", "success", "show");
+    popup.classList.add(tipo, "show");
+    if (popupTimer) clearTimeout(popupTimer);
+    popupTimer = setTimeout(() => popup.classList.remove("show"), 5000);
+}
+
 async function criarConsulta(especialidade, medico, data, horario) {
     const token = localStorage.getItem("token");
     const consulta = { especialidade, medico, data, horario };
 
-    const response = await fetch("http://127.0.0.1:5000/consultas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-        body: JSON.stringify(consulta)
-    });
+    try {
+        const response = await fetch("http://127.0.0.1:5000/consultas", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+            body: JSON.stringify(consulta)
+        });
 
-    const result = await response.json();
-    if (response.ok) {
-        console.log("Consulta marcada com sucesso!", result);
-        await listagem();
-    } else {
-        console.error("Erro do servidor:", response.status, result);
-        alert(result.erro || "Erro ao marcar consulta");
+        const result = await response.json();
+        if (response.ok) {
+            console.log("Consulta marcada com sucesso!", result);
+            await listagem();
+        } else {
+            console.error("Erro do servidor:", response.status, result);
+            exibirPopup(result.erro || "Erro ao marcar consulta", "error");
+        }
+    } catch (error) {
+        exibirPopup("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.", "error");
+        console.error("Erro de rede ao agendar consulta:", error);
     }
 }
 
@@ -55,16 +75,20 @@ async function listagem() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const response = await fetch("http://127.0.0.1:5000/consultas", {
-        method: "GET",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
-    });
+    try {
+        const response = await fetch("http://127.0.0.1:5000/consultas", {
+            method: "GET",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+        });
 
-    if (response.ok) {
-        const consultas = await response.json();
-        exibirConsultas(consultas);
-    } else {
-        console.error("Erro ao buscar consultas");
+        if (response.ok) {
+            const consultas = await response.json();
+            exibirConsultas(consultas);
+        } else {
+            console.error("Erro ao buscar consultas");
+        }
+    } catch (error) {
+        console.error("Erro de rede ao carregar consultas:", error);
     }
 }
 
@@ -73,19 +97,37 @@ function exibirConsultas(consultas) {
     container.innerHTML = "";
 
     if (!consultas || consultas.length === 0) {
-        container.innerHTML = "<p>Nenhuma consulta encontrada.</p>";
+        container.textContent = "Nenhuma consulta encontrada.";
         return;
     }
 
     consultas.forEach(c => {
-        container.innerHTML += `
-            <div class="consultas-item">
-                <div class="especialidade"><h3>Especialidade:</h3><p>${c.especialidade}</p></div>
-                <div class="medico"><h3>Médico:</h3><p>${c.medico}</p></div>
-                <div class="data"><h3>Data:</h3><p>${c.data}</p></div>
-                <div class="horario"><h3>Horário:</h3><p>${c.horario}</p></div>
-            </div>
-        `;
+        const card = document.createElement("div");
+        card.className = "consultas-item";
+
+        const fields = [
+            { cls: "especialidade", label: "Especialidade:", value: c.especialidade },
+            { cls: "medico",        label: "Médico:",         value: c.medico },
+            { cls: "data",          label: "Data:",           value: c.data },
+            { cls: "horario",       label: "Horário:",        value: c.horario },
+        ];
+
+        fields.forEach(({ cls, label, value }) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = cls;
+
+            const h3 = document.createElement("h3");
+            h3.textContent = label;
+
+            const p = document.createElement("p");
+            p.textContent = value;
+
+            wrapper.appendChild(h3);
+            wrapper.appendChild(p);
+            card.appendChild(wrapper);
+        });
+
+        container.appendChild(card);
     });
 }
 

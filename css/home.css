@@ -18,6 +18,7 @@
     color: white; 
     font-size: 16px; 
     cursor: pointer; 
+    display: inline-block;
 }
 .sobre-container{
     display: flex;

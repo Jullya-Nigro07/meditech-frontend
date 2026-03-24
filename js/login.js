@@ -38,8 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
     const userJson = localStorage.getItem("user");
     if (userJson && nomeUsuario) {
-        const user = JSON.parse(userJson);
-        nomeUsuario.innerText = user.nome;
+        try {
+            const user = JSON.parse(userJson);
+            nomeUsuario.innerText = user.nome;
+        } catch {
+            localStorage.removeItem("user");
+        }
     }
 
     const emailLogin = document.getElementById("emailLogin");
@@ -52,11 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
             senhaLogin.value = senhaSalva;
         }
     }
-    if (document.getElementById("lista-consultas")) {
-        carregarConsultas();
-    }
-
-
     const botaoLogin = document.getElementById("botaoLogin")
 
     if (botaoLogin) {
