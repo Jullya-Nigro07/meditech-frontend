@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:stitch.withgoogle.com)",
+      "WebFetch(domain:idx.google.com)",
+      "WebFetch(domain:developers.google.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(claude mcp:*)",
+      "mcp__stitch__list_projects",
+      "Bash(node -e \":*)",
+      "Bash(python3 -c \":*)",
+      "mcp__stitch__get_project",
+      "mcp__stitch__list_screens",
+      "mcp__mcp-registry__search_mcp_registry",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(p.get\\(''''displayName'''',''''''''\\), p.get\\(''''name'''',''''''''\\), p.get\\(''''id'''',''''''''\\)\\) for p in data.get\\(''''projects'''',[]\\)]\")",
+      "Bash(python -c \":*)",
+      "mcp__stitch__fetch_screen_image",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(p[''''id''''], p[''''displayName'''']\\) for p in data[''''projects''''][:20]]\")",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(open\\(r''''C:\\\\Users\\\\hleit\\\\.claude\\\\projects\\\\d--Projetos-faculdade-04-semestre-AeS-meditech-frontend\\\\99eaf4c5-1ca8-49bb-9385-3c3bb4279084\\\\tool-results\\\\mcp-stitch-list_projects-1774329937789.txt''''\\)\\); [print\\(p[''''id''''], p[''''displayName'''']\\) for p in data[''''projects''''][:20]]\")",
+      "Bash(node -e \"const data=require\\(String.raw\\\\`C:\\\\Users\\\\hleit\\\\.claude\\\\projects\\\\d--Projetos-faculdade-04-semestre-AeS-meditech-frontend\\\\99eaf4c5-1ca8-49bb-9385-3c3bb4279084\\\\tool-results\\\\mcp-stitch-list_projects-1774329937789.txt\\\\`\\); data.projects.slice\\(0,20\\).forEach\\(p=>console.log\\(p.id, p.displayName\\)\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const data=JSON.parse\\(fs.readFileSync\\(String.raw\\\\`C:\\\\Users\\\\hleit\\\\.claude\\\\projects\\\\d--Projetos-faculdade-04-semestre-AeS-meditech-frontend\\\\99eaf4c5-1ca8-49bb-9385-3c3bb4279084\\\\tool-results\\\\mcp-stitch-list_projects-1774329937789.txt\\\\`,''utf8''\\)\\); data.projects.slice\\(0,10\\).forEach\\(p=>console.log\\(p.id, ''|'', p.displayName\\)\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const raw=fs.readFileSync\\(String.raw\\\\`C:\\\\Users\\\\hleit\\\\.claude\\\\projects\\\\d--Projetos-faculdade-04-semestre-AeS-meditech-frontend\\\\99eaf4c5-1ca8-49bb-9385-3c3bb4279084\\\\tool-results\\\\mcp-stitch-list_projects-1774329937789.txt\\\\`,''utf8''\\); const data=JSON.parse\\(raw\\); console.log\\(Object.keys\\(data\\)\\); console.log\\(data.projects ? data.projects.length : ''no projects key''\\); if\\(data.projects\\) data.projects.slice\\(0,5\\).forEach\\(p=>console.log\\(JSON.stringify\\(Object.keys\\(p\\)\\)\\)\\)\")"
+    ]
+  }
+}

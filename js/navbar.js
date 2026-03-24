@@ -1,92 +1,81 @@
 class AppNavbar extends HTMLElement {
     connectedCallback() {
         this.render();
-        this.mountLinks();
-        this.mountSidebar();
+        this.mountLogout();
+        this.highlightActive();
     }
 
-    render() {
-        this.innerHTML = `
-            <header>
-                <div class="wrapper">
-                    <nav>
-                        <a href="/html/index.html" class="logo-link">
-                            <img class="logo" src="/png/logo-meditech.png" alt="Logo Meditech">
-                        </a>
-                        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </nav>
-                </div>
-            </header>
-            <div class="sidebar-overlay" id="sidebar-overlay"></div>
-            <aside class="sidebar" id="sidebar">
-                <button class="sidebar-close" id="sidebar-close" aria-label="Fechar menu">&#10005;</button>
-                <ul class="sidebar-menu"></ul>
-            </aside>
-        `;
-    }
-
-    mountLinks() {
-        const sidebarMenu = this.querySelector("ul.sidebar-menu");
-        if (!sidebarMenu) return;
-
-        const token = localStorage.getItem("token");
-
-        const createItem = (href, text, id) => {
-            const item = document.createElement("li");
-            const link = document.createElement("a");
-            link.href = href;
-            link.textContent = text;
-            if (id) link.id = id;
-            item.appendChild(link);
-            return item;
-        };
-
-        sidebarMenu.innerHTML = "";
-        sidebarMenu.appendChild(createItem("index.html", "Home"));
-        sidebarMenu.appendChild(createItem("about.html", "Sobre nós"));
-
-        if (token) {
-            sidebarMenu.appendChild(createItem("consultation.html", "Minhas consultas"));
-            sidebarMenu.appendChild(createItem("#", "Gerenciar médicos"));
-            sidebarMenu.appendChild(createItem("#", "Ver agendamentos"));
-
-            const logoutItem = createItem("#", "Sair", "logout-link");
-            logoutItem.querySelector("a").addEventListener("click", (e) => {
-                e.preventDefault();
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-                window.location.href = "index.html";
-            });
-            sidebarMenu.appendChild(logoutItem);
-        } else {
-            sidebarMenu.appendChild(createItem("login.html", "Login"));
-            sidebarMenu.appendChild(createItem("register.html", "Cadastrar-se"));
+    _getUserData() {
+        try {
+            const raw = localStorage.getItem("user");
+            if (!raw) return null;
+            const user = JSON.parse(raw);
+            const nome = user.nome || user.name || "Usuário";
+            return { nome, inicial: nome.charAt(0).toUpperCase() };
+        } catch {
+            return null;
         }
     }
 
-    mountSidebar() {
-        const hamburger = this.querySelector("#hamburger-btn");
-        const sidebar = this.querySelector("#sidebar");
-        const overlay = this.querySelector("#sidebar-overlay");
-        const closeBtn = this.querySelector("#sidebar-close");
+    render() {
+        const token = localStorage.getItem("token");
+        const userData = this._getUserData();
 
-        const openSidebar = () => {
-            sidebar.classList.add("open");
-            overlay.classList.add("open");
-        };
+        const navLinks = token ? `
+            <a href="/html/index.html" data-page="index">Home</a>
+            <a href="/html/about.html" data-page="about">Sobre nós</a>
+            <a href="/html/consultation.html" data-page="consultation">Minhas consultas</a>
+        ` : `
+            <a href="/html/index.html" data-page="index">Home</a>
+            <a href="/html/about.html" data-page="about">Sobre nós</a>
+        `;
 
-        const closeSidebar = () => {
-            sidebar.classList.remove("open");
-            overlay.classList.remove("open");
-        };
+        const navEnd = token && userData ? `
+            <div class="navbar-user">
+                <div class="navbar-avatar">${userData.inicial}</div>
+                <span class="navbar-username">${userData.nome}</span>
+                <button class="navbar-logout" id="navbar-logout">Sair</button>
+            </div>
+        ` : `
+            <div class="navbar-auth">
+                <a href="/html/login.html" class="navbar-link-auth" data-page="login">Login</a>
+                <a href="/html/register.html" class="navbar-btn-register" data-page="register">Cadastrar-se</a>
+            </div>
+        `;
 
-        hamburger.addEventListener("click", openSidebar);
-        closeBtn.addEventListener("click", closeSidebar);
-        overlay.addEventListener("click", closeSidebar);
+        this.innerHTML = `
+            <nav class="navbar">
+                <div class="navbar-inner">
+                    <div class="navbar-start">
+                        <a href="/html/index.html" class="navbar-logo">
+                            <img src="/png/logo.png" alt="MediTech">
+                        </a>
+                        <div class="navbar-links">${navLinks}</div>
+                    </div>
+                    <div class="navbar-end">${navEnd}</div>
+                </div>
+            </nav>
+        `;
+    }
+
+    mountLogout() {
+        const btn = this.querySelector("#navbar-logout");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.href = "/html/index.html";
+        });
+    }
+
+    highlightActive() {
+        const path = window.location.pathname;
+        const links = this.querySelectorAll(".navbar-links a[data-page]");
+        links.forEach(a => {
+            if (path.includes(a.dataset.page)) {
+                a.classList.add("active");
+            }
+        });
     }
 }
 

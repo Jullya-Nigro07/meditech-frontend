@@ -4,37 +4,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
-    <title>Meditech - Consultas</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <title>MediTech — Consultas Médicas</title>
 </head>
 
 <body>
     <app-navbar></app-navbar>
 
-    <div class="main">
-        <div class="background">
-            <div class="container">
-                <div class="box-agendar" id="boxLogado">
-                    <h1>Agende sua consulta</h1>
-                    <a class="btn-consulta" href="consultation.html">Marcar consulta</a>
-                </div>
-                <div class="box-agendar box-guest" id="boxGuest">
-                    <h1>Bem-vindo à Meditech</h1>
-                    <p>Entre na sua conta para agendar consultas.</p>
-                    <a class="btn-consulta" href="login.html">Entrar na conta</a>
-                    <a class="link-cadastro-home" href="register.html">Ainda não tem conta? Cadastre-se</a>
-                </div>
-                <div class="box-info">
-                    <h3>Meditech Tecnologia que cuida de vidas</h3>
-                    <p>Nosso compromisso é levar tecnologia de ponta para o setor da saúde, facilitando diagnósticos, otimizando a gestão e contribuindo para um atendimento mais ágil e humanizado. Combinamos conhecimento técnico, inovação e confiança para criar ferramentas que realmente fazem a diferença no dia a dia da medicina.</p>
+    <main class="main">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="/png/Hero tela inicial.png" alt="Ambiente clínico moderno">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span class="eyebrow-text">Excelência em Saúde de Precisão</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        O futuro do<br>
+                        <em>Cuidado Clínico.</em>
+                    </h1>
+
+                    <p class="hero-desc">
+                        Acesse uma rede selecionada de especialistas de classe mundial e diagnósticos avançados de precisão, adaptados para o profissional exigente e o paciente.
+                    </p>
+
+                    <div id="hero-cta"></div>
                 </div>
             </div>
+        </section>
+
+        <!-- ===== MÉTRICAS ===== -->
+        <section class="metrics-section">
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <span class="metric-number">98<em>%</em></span>
+                    <span class="metric-label">Precisão Diagnóstica</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">12k<em>+</em></span>
+                    <span class="metric-label">Especialistas Certificados</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">15<em>min</em></span>
+                    <span class="metric-label">Tempo Médio de Espera</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">500<em>+</em></span>
+                    <span class="metric-label">Centros Clínicos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ESPECIALIDADES — BENTO GRID ===== -->
+        <section class="specialties-section">
+            <div class="specialties-section-inner">
+
+                <div class="specialties-header">
+                    <div class="specialties-header-text">
+                        <h2>Especialidades de Classe Mundial</h2>
+                        <p>Excelência clínica integrada em todas as disciplinas, aproveitando tecnologia avançada para resultados precisos.</p>
+                    </div>
+                    <a class="specialties-view-all" href="/html/consultation.html">
+                        Ver Todas as Especialidades
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="bento-grid">
+
+                    <!-- Neurologia — col 1-8, row 1 -->
+                    <div class="bento-card bento-neuro">
+                        <div class="card-content">
+                            <span class="material-symbols-outlined card-icon">neurology</span>
+                            <h4>Neurologia de Precisão</h4>
+                            <p>Neuroimagem avançada e mapeamento cognitivo para tratamento neurodegenerativo.</p>
+                            <a class="card-link" href="/html/consultation.html">Explorar Especialidade</a>
+                        </div>
+                        <div class="card-image">
+                            <img src="/png/neurologista.png" alt="Neurologia">
+                        </div>
+                    </div>
+
+                    <!-- Cardiovascular — col 9-12, row 1 -->
+                    <div class="bento-card bento-cardio">
+                        <div>
+                            <span class="material-symbols-outlined card-icon">cardiology</span>
+                            <h4 style="margin-top: 20px;">Laboratório Cardiovascular</h4>
+                        </div>
+                        <div>
+                            <p>Monitoramento cardíaco em tempo real e perfil genômico preventivo.</p>
+                            <div class="live-indicator" style="margin-top: 20px;">
+                                <span class="live-dot"></span>
+                                <span class="live-label">Monitoramento ao Vivo Ativo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oncologia — col 1-4, row 2 -->
+                    <div class="bento-card bento-onco">
+                        <div>
+                            <span class="material-symbols-outlined card-icon">oncology</span>
+                            <h4 style="margin-top: 20px;">Oncologia Avançada</h4>
+                        </div>
+                        <div>
+                            <p>Imunoterapia personalizada e sequenciamento genético direcionado.</p>
+                            <a class="card-link" href="/html/consultation.html" style="margin-top: 16px; display: inline-block;">Descobrir</a>
+                        </div>
+                    </div>
+
+                    <!-- Pediátrico — col 5-12, row 2 -->
+                    <div class="bento-card bento-ped">
+                        <div class="card-content">
+                            <span class="material-symbols-outlined card-icon">child_care</span>
+                            <h4>Cuidado Pediátrico</h4>
+                            <p>Medicina compassiva encontrando tecnologia moderna para nossos pacientes mais jovens.</p>
+                        </div>
+                        <div class="card-image">
+                            <img src="/png/Pediatrico.png" alt="Pediatria">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CTA abaixo do bento -->
+                <div class="bento-cta">
+                    <a class="btn-bento-cta" href="/html/consultation.html">
+                        <span class="material-symbols-outlined icon-main">calendar_month</span>
+                        Acessar Meus Agendamentos
+                        <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== CTA FINAL ===== -->
+        <section class="cta-section">
+            <div class="cta-banner">
+                <div class="cta-orb" aria-hidden="true"></div>
+
+                <div class="cta-text">
+                    <h2>Capacitando clínicos com<br>precisão molecular.</h2>
+                    <p>Junte-se à plataforma MediTech para agendar consultas com especialistas, acompanhar seu histórico de saúde e cuidar da sua saúde com confiança.</p>
+                    <div class="cta-actions">
+                        <a class="btn-cta-primary" href="/html/register.html">Criar conta gratuita</a>
+                        <a class="btn-cta-ghost" href="/html/about.html">Sobre o projeto</a>
+                    </div>
+                </div>
+
+                <div class="cta-widget" aria-hidden="true">
+                    <div class="cta-widget-header">
+                        <div class="cta-widget-icon">
+                            <span class="material-symbols-outlined">hub</span>
+                        </div>
+                        <div>
+                            <div class="cta-widget-label">Status da Rede</div>
+                            <div class="cta-widget-status">Operacional</div>
+                        </div>
+                    </div>
+                    <div class="cta-widget-bars">
+                        <div class="cta-bar-track">
+                            <div class="cta-bar-fill" style="width: 75%"></div>
+                        </div>
+                        <div class="cta-bar-track">
+                            <div class="cta-bar-fill" style="width: 50%"></div>
+                        </div>
+                        <div class="cta-bar-track">
+                            <div class="cta-bar-fill" style="width: 82%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <a href="/html/index.html" class="footer-brand-logo">MediTech</a>
+                <p class="footer-brand-tagline">Redefinindo a excelência clínica por meio da medicina orientada por dados e do design de cuidados centrado no ser humano.</p>
+            </div>
+            <div>
+                <div class="footer-col-title">Plataforma</div>
+                <nav class="footer-col-links">
+                    <a href="/html/consultation.html">Consultas</a>
+                    <a href="/html/register.html">Cadastro</a>
+                    <a href="/html/login.html">Entrar</a>
+                </nav>
+            </div>
+            <div>
+                <div class="footer-col-title">Jurídico</div>
+                <nav class="footer-col-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Serviço</a>
+                    <a href="#">Conformidade</a>
+                </nav>
+            </div>
+            <div>
+                <div class="footer-col-title">Contato</div>
+                <nav class="footer-col-links">
+                    <a href="/html/about.html">Sobre nós</a>
+                    <a href="#">Suporte</a>
+                    <a href="#">Segurança</a>
+                </nav>
+            </div>
         </div>
-    </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2025 MediTech. Todos os direitos reservados.</span>
+        </div>
+    </footer>
+
+    <script src="/js/navbar.js"></script>
+    <script src="/js/home.js"></script>
 </body>
-<script src="/js/navbar.js"></script>
-<script src="/js/home.js"></script>
 
 </html>
