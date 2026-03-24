@@ -238,6 +238,81 @@ Para elementos flutuantes ou trays persistentes:
 
 ---
 
+## 8. Tela — Lista de Médicos com Filtros de Destaque (`consultation.html`)
+
+> **Conceito:** "Agende seu Especialista" — layout de busca com filtros integrados em pill e listagem de médicos em cards compactos. Foco em escaneabilidade rápida e ação direta.
+
+### Estrutura de seções (top → bottom)
+
+```
+[ Navbar fixo (glass) ]
+[ Barra de Filtros — pill centralizada ]
+  └─ [ Badge de disponibilidade ]
+[ Lista de Médicos — cards verticais ]
+  └─ [ CTA "Ver todos os especialistas" ]
+[ Footer ]
+```
+
+---
+
+### Navbar
+
+- Idêntica à da `index.html` — `glass-nav` com `backdrop-blur-xl`, links Painel · Análises · Pacientes · Relatórios.
+- Link ativo ("Pacientes"): `font-semibold border-b-2 border-on-surface`.
+
+---
+
+### Barra de Filtros
+
+- **Posição:** centralizada horizontalmente, `mt-24` abaixo do navbar fixo.
+- **Forma:** pill único — `rounded-[2rem]`, `bg-surface-container-lowest`, sombra ambiente `shadow-lg` (blur 48px, 5% opacidade).
+- **Três seções clicáveis** separadas por divisória `outline_variant` a 15%:
+
+| Seção | Ícone | Label superior | Valor padrão |
+|-------|-------|----------------|--------------|
+| Data | `calendar_today` | "Data" | "Hoje, 24 Mai" |
+| Especialidade | `local_hospital` | "Especialidade" | "Cardiologia" |
+| Período | `schedule` | "Período" | "Manhã & Tarde" |
+
+- **Botão "Buscar":** `bg-primary` → `bg-primary-container` (gradiente), `text-on-primary`, `rounded-full`, `px-8 py-4`, ícone `search` à esquerda.
+- **Badge de resultado:** pílula `bg-surface-container-low` abaixo da barra — ícone `circle` pulsante `bg-primary` + texto "42 Especialistas Ativos Hoje" em Inter `text-sm font-semibold`.
+
+---
+
+### Lista de Médicos
+
+- **Layout:** coluna flex (`flex-col gap-4`), `max-w-3xl mx-auto`, `py-10`.
+- **Cada card:**
+  - **Fundo:** `bg-surface-container-lowest`, `rounded-2xl`, `px-6 py-5`.
+  - **Avatar:** `w-14 h-14 rounded-full`, foto do médico. Badge de disponibilidade sobreposto no canto: pílula `bg-primary/10 text-primary text-xs` ("Disponível") ou `bg-tertiary/10 text-tertiary` ("Em atendimento").
+  - **Nome:** Manrope `text-base font-bold text-on-surface`.
+  - **Especialidade:** Inter `text-sm text-on-surface-variant`, ícone `medical_services` à esquerda.
+  - **Avaliação:** estrelas `text-tertiary-container` (fill) + nota `text-sm font-semibold` + "(124 avaliações)" `text-on-surface-variant`.
+  - **Próximo horário:** `text-xs text-on-surface-variant` + ícone `schedule`.
+  - **Botão "Agendar Agora":** `bg-primary`, `text-on-primary`, `rounded-lg`, `px-5 py-2`, alinhado à direita do card. Hover: `hover:bg-primary-container`, `hover:shadow-md`.
+- **CTA final:** link "Ver todos os 240 especialistas →" centralizado, `text-primary font-semibold underline underline-offset-4`.
+
+---
+
+### Especialistas exibidos (dados de referência)
+
+| Nome | Especialidade | Status |
+|------|--------------|--------|
+| Dra. Beatriz Santos | Cardiologista | Disponível |
+| Dr. Ricardo Almeida | Neurologista | Disponível |
+| Dra. Helena Costa | Pediatra | Em atendimento |
+| Dr. Fernando Lima | Ortopedista | Disponível |
+
+---
+
+### Footer
+
+- **Fundo:** `bg-surface-container-low`, sem borda (separação por tom).
+- **Links:** Termos de Uso · Privacidade · Suporte — Inter `text-xs uppercase tracking-widest text-on-surface-variant`.
+- **Copyright:** `text-xs text-outline`.
+
+---
+
 ```css
 :root {
   /* Primárias */
