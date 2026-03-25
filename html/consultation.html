@@ -24,17 +24,6 @@
                     <span class="filtro-label">Especialidade</span>
                     <select id="filtroEspecialidade" class="filtro-valor">
                         <option value="">Todas</option>
-                        <option>Clínico Geral</option>
-                        <option>Cardiologista</option>
-                        <option>Dermatologista</option>
-                        <option>Ginecologista</option>
-                        <option>Oftalmologista</option>
-                        <option>Pediatra</option>
-                        <option>Ortopedista</option>
-                        <option>Neurologista</option>
-                        <option>Endocrinologista</option>
-                        <option>Psiquiatra</option>
-                        <option>Dentista</option>
                     </select>
                 </div>
                 <div class="filtro-divider"></div>
@@ -44,7 +33,13 @@
                         <option value="">Qualquer período</option>
                         <option value="manha">Manhã</option>
                         <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
                     </select>
+                </div>
+                <div class="filtro-divider"></div>
+                <div class="filtro-item">
+                    <span class="filtro-label">Data</span>
+                    <input type="text" id="filtroData" class="filtro-valor" placeholder="Qualquer data" readonly>
                 </div>
                 <button id="btnBuscar" class="btn-buscar" type="button">
                     <span class="material-symbols-outlined">search</span>

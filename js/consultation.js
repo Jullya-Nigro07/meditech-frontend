@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    fetchEspecialidades();
     fetchMedicos();
 
     document.getElementById("btnBuscar").addEventListener("click", aplicarFiltros);
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         await criarConsulta(medicoSelecionado.id, medicoSelecionado.especialidade_id, data_agendada, hora);
     });
 
+    flatpickr("#filtroData", {
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        allowInput: false,
+    });
+
     flatpickr("#dataConsulta", {
         minDate: "today",
         disable: [date => date.getDay() === 0],
@@ -42,6 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
         onChange: () => atualizarHorarios()
     });
 });
+
+/* ── Especialidades ── */
+async function fetchEspecialidades() {
+    const token  = localStorage.getItem("token");
+    const select = document.getElementById("filtroEspecialidade");
+    try {
+        const r = await fetch("http://127.0.0.1:5000/especialidades", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!r.ok) return;
+        const especialidades = await r.json();
+        especialidades.forEach(esp => {
+            const opt = document.createElement("option");
+            opt.value = esp.id;
+            opt.textContent = esp.nome;
+            select.appendChild(opt);
+        });
+    } catch { /* mantém apenas "Todas" */ }
+}
 
 /* ── Busca médicos na API ── */
 async function fetchMedicos() {
@@ -83,30 +109,84 @@ async function fetchMedicos() {
 }
 
 /* ── Filtros ── */
-function aplicarFiltros() {
-    const esp    = document.getElementById("filtroEspecialidade").value;
+async function aplicarFiltros() {
+    const espId   = document.getElementById("filtroEspecialidade").value;
     const periodo = document.getElementById("filtroPeriodo").value;
+    const data    = document.getElementById("filtroData").value;
 
+    // Todos os 3 filtros preenchidos → consulta disponibilidade na API
+    if (espId && data && periodo) {
+        await buscarDisponivel(parseInt(espId), data, periodo);
+        return;
+    }
+
+    // Filtro local
     let filtrados = medicosCarregados;
 
-    if (esp) {
-        filtrados = filtrados.filter(m =>
-            (m.especialidade || "").toLowerCase() === esp.toLowerCase()
-        );
+    if (espId) {
+        filtrados = filtrados.filter(m => String(m.especialidade_id) === espId);
     }
 
     if (periodo) {
         filtrados = filtrados.filter(m => {
             const horarios = getHorariosDoMedico(m);
-            return horarios.some(h => {
-                const hora = parseInt(h.split(":")[0]);
-                return periodo === "manha" ? hora < 12 : hora >= 12;
-            });
+            return horarios.some(h => pertenceAoPeriodo(h, periodo));
         });
     }
 
     renderMedicos(filtrados);
     atualizarBadge(filtrados.length);
+}
+
+async function buscarDisponivel(especialidade_id, data, periodo) {
+    const token  = localStorage.getItem("token");
+    const params = new URLSearchParams({ especialidade_id, data, periodo });
+    try {
+        const r = await fetch(`http://127.0.0.1:5000/horarios-disponiveis/disponivel?${params}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!r.ok) {
+            renderErro("Erro ao buscar disponibilidade.");
+            return;
+        }
+        const dados = await r.json();
+        processarDisponibilidade(dados);
+    } catch {
+        renderErro("Não foi possível conectar ao servidor.");
+    }
+}
+
+function processarDisponibilidade(dados) {
+    if (!Array.isArray(dados) || dados.length === 0) {
+        renderMedicos([]);
+        atualizarBadge(0);
+        return;
+    }
+
+    // Mapeia medico_id ou id contra os médicos já carregados
+    const primeiro = dados[0];
+    const idField  = primeiro?.medico_id !== undefined ? "medico_id"
+                   : primeiro?.id         !== undefined ? "id"
+                   : null;
+
+    if (idField) {
+        const ids      = new Set(dados.map(d => d[idField]));
+        const filtrados = medicosCarregados.filter(m => ids.has(m.id));
+        renderMedicos(filtrados);
+        atualizarBadge(filtrados.length);
+        return;
+    }
+
+    renderMedicos([]);
+    atualizarBadge(0);
+}
+
+function pertenceAoPeriodo(horario, periodo) {
+    const hora = parseInt(horario.split(":")[0]);
+    if (periodo === "manha") return hora >= 6  && hora < 12;
+    if (periodo === "tarde") return hora >= 12 && hora < 18;
+    if (periodo === "noite") return hora >= 18;
+    return true;
 }
 
 /* ── Render ── */
@@ -202,7 +282,7 @@ const HORARIOS_POR_PERIODO = {
     noite: ["18:00", "19:00", "20:00"]
 };
 
-// Retorna horários do mapa estático (usado para filtro de período)
+// Retorna horários do mapa estático (usado para filtro local de período)
 function getHorariosDoMedico(medico) {
     if (typeof especialidadeMedicos === "undefined") return [];
 
@@ -222,8 +302,8 @@ async function atualizarHorarios() {
     select.innerHTML = '<option disabled selected>Carregando horários...</option>';
 
     // JS: 0=dom,1=seg...6=sáb  →  API: 0=seg...6=dom
-    const jsDia      = new Date(data + "T00:00:00").getDay();
-    const diaSemana  = jsDia === 0 ? 6 : jsDia - 1;
+    const jsDia     = new Date(data + "T00:00:00").getDay();
+    const diaSemana = jsDia === 0 ? 6 : jsDia - 1;
 
     const token = localStorage.getItem("token");
     try {

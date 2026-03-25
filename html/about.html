@@ -4,48 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/about.css">
-    <title>Meditech - Sobre Nós</title>
+    <title>Meditech — Sobre Nós</title>
 </head>
 
 <body>
     <app-navbar></app-navbar>
 
-    <div class="main">
-        <div class="background">
-            <section class="sobre-container">
+    <main class="sobre-main">
 
-                <div class="sobre-box">
-                    <h1>Sobre a Meditech</h1>
+        <section class="sobre-hero">
+            <div class="wrapper">
+                <span class="sobre-eyebrow">Nossa história</span>
+                <h1 class="sobre-headline">Tecnologia a serviço<br>da <em>saúde</em></h1>
+                <p class="sobre-subtitulo">
+                    A Meditech é uma plataforma digital criada para facilitar o acesso a consultas
+                    médicas de forma simples, rápida e segura.
+                </p>
+            </div>
+        </section>
 
+        <section class="sobre-conteudo">
+            <div class="wrapper">
+                <div class="sobre-texto">
                     <p>
-                        A Meditech é uma plataforma digital criada para facilitar o acesso a consultas médicas
-                        de forma simples, rápida e segura. Nosso objetivo é conectar pacientes e profissionais
-                        da saúde por meio da tecnologia, tornando o processo de agendamento mais prático e eficiente.
+                        Nosso objetivo é conectar pacientes e profissionais da saúde por meio da tecnologia,
+                        tornando o processo de agendamento mais prático e eficiente.
                     </p>
-
                     <p>
-                        Com a Meditech, os pacientes podem escolher especialidades, verificar horários disponíveis
-                        e agendar consultas online sem burocracia. A plataforma foi desenvolvida para oferecer
-                        uma experiência intuitiva, garantindo mais organização para clínicas e mais comodidade
-                        para os pacientes.
+                        Com a Meditech, os pacientes podem escolher especialidades, verificar horários
+                        disponíveis e agendar consultas online sem burocracia. A plataforma foi desenvolvida
+                        para oferecer uma experiência intuitiva, garantindo mais organização para clínicas
+                        e mais comodidade para os pacientes.
                     </p>
-
                     <p>
                         Nosso compromisso é utilizar a tecnologia para melhorar o acesso à saúde,
                         proporcionando uma solução moderna para o agendamento de consultas médicas.
                     </p>
-
-                    <h2>Contato</h2>
-
-                    <p><strong>Endereço:</strong> Av. Paulista, 1000 – Bela Vista, São Paulo – SP</p>
-                    <p><strong>Telefone:</strong> (11) 4002-8922</p>
                 </div>
-            </section>
-        </div>
-    </div>
+            </div>
+        </section>
+
+        <section class="sobre-contato">
+            <div class="wrapper">
+                <h2 class="sobre-contato-titulo">Contato</h2>
+                <div class="sobre-contato-grid">
+                    <div class="sobre-contato-item">
+                        <span class="sobre-contato-label">Endereço</span>
+                        <span class="sobre-contato-valor">Av. Paulista, 1000 – Bela Vista, São Paulo – SP</span>
+                    </div>
+                    <div class="sobre-contato-item">
+                        <span class="sobre-contato-label">Telefone</span>
+                        <span class="sobre-contato-valor">(11) 4002-8922</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
 </body>
 <script src="/js/navbar.js"></script>
