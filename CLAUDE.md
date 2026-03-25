@@ -159,3 +159,11 @@ especialidade → { nomeMedico → [horários disponíveis] }
 4. `consultation.html` → seleciona especialidade → médico → data → horário → agenda
 5. Consultas agendadas listadas à direita do formulário em `consultation.html`
 6. Logout pela navbar → limpa `localStorage` → volta para `index.html`
+
+---
+
+## Skills disponíveis
+
+Quando o usuário pedir para criar qualquer interface, componente,
+página ou UI, leia e siga as diretrizes em:
+`.claude/skills/frontend-design/SKILL.md`

@@ -1,15 +1,15 @@
-/* about.css — The Ethereal Clinic design system */
+/* about.css — Clinical Precision & Editorial Calm */
 
 .sobre-main {
-    background-color: #f8f9fa;
+    background-color: var(--color-surface);
     font-family: 'Inter', sans-serif;
-    color: #191c1d;
+    color: var(--color-on-surface);
 }
 
 /* ── Hero ─────────────────────────────────────────── */
 
 .sobre-hero {
-    background-color: #f3f4f5; /* surface_container_low — separação por tom, sem borda */
+    background-color: var(--color-surface-low); /* separação por tom, sem borda */
     padding: 120px 0 96px;
 }
 
@@ -20,7 +20,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #4b607c; /* secondary */
+    color: var(--color-tertiary);
     margin-bottom: 24px;
 }
 
@@ -30,12 +30,12 @@
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: #191c1d; /* on_surface */
+    color: var(--color-on-surface);
     margin-bottom: 24px;
 }
 
 .sobre-headline em {
-    color: #00488d; /* primary */
+    color: var(--color-primary);
     font-style: italic;
     font-weight: 400;
 }
@@ -43,14 +43,14 @@
 .sobre-subtitulo {
     font-size: 1.125rem;
     line-height: 1.7;
-    color: #424752; /* on_surface_variant */
+    color: var(--color-on-surface-variant);
     max-width: 560px;
 }
 
 /* ── Conteúdo ─────────────────────────────────────── */
 
 .sobre-conteudo {
-    background-color: #f8f9fa; /* surface */
+    background-color: var(--color-surface);
     padding: 80px 0;
 }
 
@@ -61,7 +61,7 @@
 .sobre-texto p {
     font-size: 1rem;
     line-height: 1.75;
-    color: #424752; /* on_surface_variant */
+    color: var(--color-on-surface-variant);
     margin-bottom: 20px;
 }
 
@@ -72,7 +72,7 @@
 /* ── Contato ──────────────────────────────────────── */
 
 .sobre-contato {
-    background-color: #f3f4f5; /* surface_container_low — separação por tom, sem borda */
+    background-color: var(--color-surface-low); /* separação por tom, sem borda */
     padding: 80px 0;
 }
 
@@ -80,7 +80,7 @@
     font-family: 'Manrope', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #191c1d;
+    color: var(--color-on-surface);
     margin-bottom: 40px;
 }
 
@@ -101,10 +101,10 @@
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #727783; /* outline */
+    color: var(--color-on-surface-variant);
 }
 
 .sobre-contato-valor {
     font-size: 1rem;
-    color: #191c1d;
+    color: var(--color-on-surface);
 }
