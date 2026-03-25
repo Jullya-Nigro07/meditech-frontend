@@ -402,6 +402,29 @@ body {
 /* ── Flatpickr ── */
 .flatpickr-calendar { font-family: var(--font-body) !important; }
 
+/* ── Campo bloqueado (data pré-preenchida no modal) ── */
+.campo-bloqueado {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.75;
+    background: var(--color-surface-high) !important;
+    color: var(--color-on-surface-variant) !important;
+}
+
+/* ── Toast de filtros ── */
+.toast-filtros {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-on-surface-variant);
+    background: var(--color-surface-high);
+    padding: 8px 18px;
+    border-radius: 2rem;
+    display: none;
+    margin-top: 8px;
+}
+.toast-filtros.show { display: inline-block; }
+
 /* ── Responsive ── */
 @media (max-width: 680px) {
     .filtros-pill {

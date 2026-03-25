@@ -1,5 +1,6 @@
 let medicosCarregados = [];
 let medicoSelecionado = null;
+let dadosDisponibilidade = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem("token")) {
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchEspecialidades();
     fetchMedicos();
+    renderEstadoInicial();
 
     document.getElementById("btnBuscar").addEventListener("click", aplicarFiltros);
     document.getElementById("fecharModal").addEventListener("click", fecharModal);
@@ -41,13 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         allowInput: false,
     });
 
-    flatpickr("#dataConsulta", {
-        minDate: "today",
-        disable: [date => date.getDay() === 0],
-        dateFormat: "Y-m-d",
-        allowInput: false,
-        onChange: () => atualizarHorarios()
-    });
 });
 
 /* ── Especialidades ── */
@@ -101,8 +96,6 @@ async function fetchMedicos() {
         }));
 
         medicosCarregados = medicos;
-        renderMedicos(medicosCarregados);
-        atualizarBadge(medicosCarregados.length);
     } catch {
         renderErro("Não foi possível conectar ao servidor.");
     }
@@ -114,28 +107,12 @@ async function aplicarFiltros() {
     const periodo = document.getElementById("filtroPeriodo").value;
     const data    = document.getElementById("filtroData").value;
 
-    // Todos os 3 filtros preenchidos → consulta disponibilidade na API
-    if (espId && data && periodo) {
-        await buscarDisponivel(parseInt(espId), data, periodo);
+    if (!espId || !periodo || !data) {
+        exibirToastFiltros("Selecione especialidade, período e data para buscar.");
         return;
     }
 
-    // Filtro local
-    let filtrados = medicosCarregados;
-
-    if (espId) {
-        filtrados = filtrados.filter(m => String(m.especialidade_id) === espId);
-    }
-
-    if (periodo) {
-        filtrados = filtrados.filter(m => {
-            const horarios = getHorariosDoMedico(m);
-            return horarios.some(h => pertenceAoPeriodo(h, periodo));
-        });
-    }
-
-    renderMedicos(filtrados);
-    atualizarBadge(filtrados.length);
+    await buscarDisponivel(parseInt(espId), data, periodo);
 }
 
 async function buscarDisponivel(especialidade_id, data, periodo) {
@@ -157,6 +134,7 @@ async function buscarDisponivel(especialidade_id, data, periodo) {
 }
 
 function processarDisponibilidade(dados) {
+    dadosDisponibilidade = Array.isArray(dados) ? dados : [];
     if (!Array.isArray(dados) || dados.length === 0) {
         renderMedicos([]);
         atualizarBadge(0);
@@ -179,14 +157,6 @@ function processarDisponibilidade(dados) {
 
     renderMedicos([]);
     atualizarBadge(0);
-}
-
-function pertenceAoPeriodo(horario, periodo) {
-    const hora = parseInt(horario.split(":")[0]);
-    if (periodo === "manha") return hora >= 6  && hora < 12;
-    if (periodo === "tarde") return hora >= 12 && hora < 18;
-    if (periodo === "noite") return hora >= 18;
-    return true;
 }
 
 /* ── Render ── */
@@ -219,6 +189,25 @@ function atualizarBadge(total) {
     const sufixo = total !== 1 ? "is" : "l";
     document.getElementById("contagemEspecialistas").textContent =
         `${total} Especialista${total !== 1 ? "s" : ""} Disponíve${sufixo}`;
+}
+
+function renderEstadoInicial() {
+    document.getElementById("listaMedicos").innerHTML = `
+        <div class="medicos-vazio">
+            <span class="material-symbols-outlined">tune</span>
+            Selecione uma especialidade, período e data para buscar especialistas disponíveis.
+        </div>`;
+    document.getElementById("contagemEspecialistas").textContent = "Selecione os filtros para buscar";
+}
+
+let toastFiltrosTimer;
+function exibirToastFiltros(mensagem) {
+    const toast = document.getElementById("toastFiltros");
+    if (!toast) return;
+    toast.textContent = mensagem;
+    toast.classList.add("show");
+    if (toastFiltrosTimer) clearTimeout(toastFiltrosTimer);
+    toastFiltrosTimer = setTimeout(() => toast.classList.remove("show"), 5000);
 }
 
 function criarCardMedico(medico) {
@@ -261,79 +250,40 @@ function abrirModal(medico) {
             <div class="modal-medico-esp">${especialidade}</div>
         </div>`;
 
-    document.getElementById("dataConsulta").value = "";
-    document.getElementById("horario").innerHTML  = '<option disabled selected>Selecione um horário</option>';
+    const dataInput = document.getElementById("dataConsulta");
+    dataInput.value = document.getElementById("filtroData").value;
+    dataInput.classList.add("campo-bloqueado");
+    document.getElementById("horario").innerHTML = '<option disabled selected>Carregando horários...</option>';
 
     const popup = document.getElementById("formPopup");
     popup.classList.remove("show", "error", "success");
 
     document.getElementById("modalAgendamento").classList.remove("hidden");
+    carregarHorariosModal(medico);
 }
 
 function fecharModal() {
     document.getElementById("modalAgendamento").classList.add("hidden");
+    document.getElementById("dataConsulta").classList.remove("campo-bloqueado");
     medicoSelecionado = null;
 }
 
-/* ── Horários via API ── */
-const HORARIOS_POR_PERIODO = {
-    manha: ["08:00", "09:00", "10:00", "11:00"],
-    tarde: ["13:00", "14:00", "15:00", "16:00", "17:00"],
-    noite: ["18:00", "19:00", "20:00"]
-};
-
-// Retorna horários do mapa estático (usado para filtro local de período)
-function getHorariosDoMedico(medico) {
-    if (typeof especialidadeMedicos === "undefined") return [];
-
-    const esp          = medico.especialidade || "";
-    const nomeCompleto = `${medico.nome || ""} ${medico.sobrenome || ""}`.trim();
-    const medicosEsp   = especialidadeMedicos[esp] || {};
-
-    if (medicosEsp[nomeCompleto]) return medicosEsp[nomeCompleto];
-    return [...new Set(Object.values(medicosEsp).flat())];
-}
-
-async function atualizarHorarios() {
-    if (!medicoSelecionado) return;
-
-    const data   = document.getElementById("dataConsulta").value;
+/* ── Horários via disponibilidade ── */
+function carregarHorariosModal(medico) {
     const select = document.getElementById("horario");
-    select.innerHTML = '<option disabled selected>Carregando horários...</option>';
+    const entrada = dadosDisponibilidade.find(d => {
+        const idField = d.medico_id !== undefined ? "medico_id" : "id";
+        return d[idField] === medico.id;
+    });
 
-    // JS: 0=dom,1=seg...6=sáb  →  API: 0=seg...6=dom
-    const jsDia     = new Date(data + "T00:00:00").getDay();
-    const diaSemana = jsDia === 0 ? 6 : jsDia - 1;
+    select.innerHTML = '<option disabled selected>Selecione um horário</option>';
 
-    const token = localStorage.getItem("token");
-    try {
-        const r = await fetch(`http://127.0.0.1:5000/horarios-disponiveis/medico/${medicoSelecionado.id}`, {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
+    if (!entrada || !Array.isArray(entrada.horarios) || entrada.horarios.length === 0) {
+        select.innerHTML = '<option disabled selected>Sem horários disponíveis para esta data</option>';
+        return;
+    }
 
-        select.innerHTML = '<option disabled selected>Selecione um horário</option>';
-
-        if (r.ok) {
-            const agendas  = await r.json();
-            const periodos = agendas
-                .filter(a => a.dia_semana === diaSemana)
-                .map(a => a.periodo);
-            const horarios = periodos.flatMap(p => HORARIOS_POR_PERIODO[p] || []);
-
-            if (horarios.length > 0) {
-                horarios.forEach(h => {
-                    const opt = document.createElement("option");
-                    opt.value = h;
-                    opt.textContent = h;
-                    select.appendChild(opt);
-                });
-                return;
-            }
-        }
-    } catch { /* cai no fallback */ }
-
-    // Fallback: horários genéricos
-    ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"].forEach(h => {
+    entrada.horarios.forEach(h => {
         const opt = document.createElement("option");
         opt.value = h;
         opt.textContent = h;
@@ -371,7 +321,10 @@ async function criarConsulta(medico_id, especialidade_id, data_agendada, hora) {
 
         if (response.ok) {
             exibirPopup("Consulta agendada com sucesso!", "success");
-            setTimeout(fecharModal, 1600);
+            setTimeout(async () => {
+                fecharModal();
+                await aplicarFiltros();
+            }, 1600);
         } else {
             exibirPopup(result.erro || "Erro ao agendar consulta.", "error");
         }
