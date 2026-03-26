@@ -1,0 +1,92 @@
+/* ===================================================
+   FOOTER
+   =================================================== */
+.site-footer {
+    background: #f7f9fb;
+    border-top: 1px solid rgba(194, 198, 212, 0.2);
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 64px 80px;
+}
+
+.footer-brand-logo {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #a9b4b9;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.footer-brand-logo:hover {
+    color: #a9b4b9;
+    font-size: 0.95rem;
+}
+
+.footer-brand-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #717c82;
+    line-height: 1.75;
+    max-width: 240px;
+}
+
+.footer-col-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2a3439;
+    margin-bottom: 18px;
+}
+
+.footer-col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: #717c82;
+    text-decoration: underline;
+    text-decoration-color: rgba(194, 198, 212, 0.5);
+    text-underline-offset: 3px;
+    opacity: 0.85;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.footer-col-links a:hover {
+    opacity: 1;
+    color: #2a3439;
+    font-size: 0.78rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(194, 198, 212, 0.15);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copyright {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a9b4b9;
+}

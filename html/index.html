@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <title>MediTech — Consultas Médicas</title>
 </head>
 
@@ -157,10 +158,11 @@
                 <div class="cta-orb" aria-hidden="true"></div>
 
                 <div class="cta-text">
-                    <h2>Capacitando clínicos com<br>precisão molecular.</h2>
-                    <p>Junte-se à plataforma MediTech para agendar consultas com especialistas, acompanhar seu histórico de saúde e cuidar da sua saúde com confiança.</p>
+                    <p class="cta-eyebrow">Para profissionais de saúde</p>
+                    <h2>Leve sua prática clínica<br>a um novo nível.</h2>
+                    <p>Cadastre-se como médico na MediTech e gerencie sua agenda, defina seus horários disponíveis e receba pacientes de forma organizada e digital. Seu perfil fica ativo após validação da equipe.</p>
                     <div class="cta-actions">
-                        <a class="btn-cta-primary" href="/html/register.html">Criar conta gratuita</a>
+                        <a class="btn-cta-primary" href="/html/register-medico.html">Cadastrar como médico</a>
                         <a class="btn-cta-ghost" href="/html/about.html">Sobre o projeto</a>
                     </div>
                 </div>
@@ -168,22 +170,25 @@
                 <div class="cta-widget" aria-hidden="true">
                     <div class="cta-widget-header">
                         <div class="cta-widget-icon">
-                            <span class="material-symbols-outlined">hub</span>
+                            <span class="material-symbols-outlined">stethoscope</span>
                         </div>
                         <div>
-                            <div class="cta-widget-label">Status da Rede</div>
-                            <div class="cta-widget-status">Operacional</div>
+                            <div class="cta-widget-label">Plataforma Médica</div>
+                            <div class="cta-widget-status">Aceitando cadastros</div>
                         </div>
                     </div>
-                    <div class="cta-widget-bars">
-                        <div class="cta-bar-track">
-                            <div class="cta-bar-fill" style="width: 75%"></div>
+                    <div class="cta-widget-checklist">
+                        <div class="cta-check-item">
+                            <span class="material-symbols-outlined cta-check-icon">check_circle</span>
+                            <span>Defina horários por período</span>
                         </div>
-                        <div class="cta-bar-track">
-                            <div class="cta-bar-fill" style="width: 50%"></div>
+                        <div class="cta-check-item">
+                            <span class="material-symbols-outlined cta-check-icon">check_circle</span>
+                            <span>Gerencie suas especialidades</span>
                         </div>
-                        <div class="cta-bar-track">
-                            <div class="cta-bar-fill" style="width: 82%"></div>
+                        <div class="cta-check-item">
+                            <span class="material-symbols-outlined cta-check-icon">check_circle</span>
+                            <span>Receba pacientes com segurança</span>
                         </div>
                     </div>
                 </div>
@@ -192,44 +197,10 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div>
-                <a href="/html/index.html" class="footer-brand-logo">MediTech</a>
-                <p class="footer-brand-tagline">Redefinindo a excelência clínica por meio da medicina orientada por dados e do design de cuidados centrado no ser humano.</p>
-            </div>
-            <div>
-                <div class="footer-col-title">Plataforma</div>
-                <nav class="footer-col-links">
-                    <a href="/html/consultation.html">Consultas</a>
-                    <a href="/html/register.html">Cadastro</a>
-                    <a href="/html/login.html">Entrar</a>
-                </nav>
-            </div>
-            <div>
-                <div class="footer-col-title">Jurídico</div>
-                <nav class="footer-col-links">
-                    <a href="#">Política de Privacidade</a>
-                    <a href="#">Termos de Serviço</a>
-                    <a href="#">Conformidade</a>
-                </nav>
-            </div>
-            <div>
-                <div class="footer-col-title">Contato</div>
-                <nav class="footer-col-links">
-                    <a href="/html/about.html">Sobre nós</a>
-                    <a href="#">Suporte</a>
-                    <a href="#">Segurança</a>
-                </nav>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span class="footer-copyright">© 2025 MediTech. Todos os direitos reservados.</span>
-        </div>
-    </footer>
+    <app-footer></app-footer>
 
     <script src="/js/navbar.js"></script>
+    <script src="/js/footer.js"></script>
     <script src="/js/home.js"></script>
 </body>
 

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <title>Cadastro — MediTech</title>
 </head>
 
@@ -24,44 +26,44 @@
             <div class="register-form-inner">
 
                 <!-- Identidade visual -->
-                <div class="register-brand">
-                    <div class="register-brand-icon">
+                <div class="auth-brand">
+                    <div class="auth-brand-icon">
                         <span class="material-symbols-outlined">medical_services</span>
                     </div>
-                    <span class="register-brand-name">MediTech</span>
+                    <span class="auth-brand-name">MediTech</span>
                 </div>
 
-                <h1 class="register-title">Crie sua conta</h1>
-                <p class="register-subtitle">Insira seus dados para começar sua jornada na medicina de precisão.</p>
+                <h1 class="auth-title">Crie sua conta</h1>
+                <p class="auth-subtitle">Insira seus dados para começar sua jornada na medicina de precisão.</p>
 
                 <!-- Formulário -->
-                <form class="register-form" novalidate>
+                <form class="auth-form" novalidate>
 
                     <div id="formPopup" class="form-popup" role="alert" aria-live="polite"></div>
 
                     <!-- Nome / Sobrenome -->
                     <div class="register-grid-2">
-                        <div class="register-field">
-                            <label class="register-label" for="nome">Nome</label>
-                            <input id="nome" class="register-input" type="text"
+                        <div class="auth-field">
+                            <label class="auth-label" for="nome">Nome</label>
+                            <input id="nome" class="auth-input" type="text"
                                 placeholder="João" required autocomplete="given-name">
                         </div>
-                        <div class="register-field">
-                            <label class="register-label" for="sobrenome">Sobrenome</label>
-                            <input id="sobrenome" class="register-input" type="text"
+                        <div class="auth-field">
+                            <label class="auth-label" for="sobrenome">Sobrenome</label>
+                            <input id="sobrenome" class="auth-input" type="text"
                                 placeholder="Silva" required autocomplete="family-name">
                         </div>
                     </div>
 
                     <!-- Data de Nascimento / Gênero -->
                     <div class="register-grid-2">
-                        <div class="register-field">
-                            <label class="register-label" for="dataNasc">Data de Nascimento</label>
-                            <input id="dataNasc" class="register-input" type="date" required>
+                        <div class="auth-field">
+                            <label class="auth-label" for="dataNasc">Data de Nascimento</label>
+                            <input id="dataNasc" class="auth-input" type="date" required>
                         </div>
-                        <div class="register-field">
-                            <label class="register-label" for="genero">Gênero</label>
-                            <select id="genero" class="register-input register-select" required>
+                        <div class="auth-field">
+                            <label class="auth-label" for="genero">Gênero</label>
+                            <select id="genero" class="auth-input auth-select" required>
                                 <option value="">Selecionar</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
@@ -72,40 +74,40 @@
                     </div>
 
                     <!-- E-mail -->
-                    <div class="register-field">
-                        <label class="register-label" for="email">E-mail</label>
-                        <input id="email" class="register-input" type="email"
+                    <div class="auth-field">
+                        <label class="auth-label" for="email">E-mail</label>
+                        <input id="email" class="auth-input" type="email"
                             placeholder="joao.silva@exemplo.com" required autocomplete="email">
                     </div>
 
                     <!-- CPF / Telefone -->
                     <div class="register-grid-2">
-                        <div class="register-field">
-                            <label class="register-label" for="cpf">CPF</label>
-                            <input id="cpf" class="register-input" type="text"
+                        <div class="auth-field">
+                            <label class="auth-label" for="cpf">CPF</label>
+                            <input id="cpf" class="auth-input" type="text"
                                 placeholder="000.000.000-00" required autocomplete="off">
                         </div>
-                        <div class="register-field">
-                            <label class="register-label" for="telefone">Telefone</label>
-                            <input id="telefone" class="register-input" type="tel"
+                        <div class="auth-field">
+                            <label class="auth-label" for="telefone">Telefone</label>
+                            <input id="telefone" class="auth-input" type="tel"
                                 placeholder="(11) 99999-9999" required autocomplete="tel">
                         </div>
                     </div>
 
                     <!-- Senha -->
-                    <div class="register-field">
-                        <label class="register-label" for="senha">Senha</label>
-                        <input id="senha" class="register-input" type="password"
+                    <div class="auth-field">
+                        <label class="auth-label" for="senha">Senha</label>
+                        <input id="senha" class="auth-input" type="password"
                             placeholder="••••••••" required autocomplete="new-password">
                     </div>
 
-                    <button id="botaoCadastrarUser" class="register-btn" type="submit">Criar Conta</button>
+                    <button id="botaoCadastrarUser" class="auth-btn" type="submit">Criar Conta</button>
 
                 </form>
 
                 <!-- Link para login -->
                 <div class="register-form-footer">
-                    <p class="register-login-link">
+                    <p class="auth-redirect-text">
                         Já tem uma conta?
                         <a href="/html/login.html">Entrar</a>
                     </p>
@@ -146,7 +148,10 @@
 
     </main>
 
+    <app-footer></app-footer>
+
     <script src="/js/navbar.js"></script>
+    <script src="/js/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr("#dataNasc", {
