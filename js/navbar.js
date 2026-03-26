@@ -24,7 +24,7 @@ class AppNavbar extends HTMLElement {
         const navLinks = token ? `
             <a href="/html/index.html" data-page="index">Home</a>
             <a href="/html/about.html" data-page="about">Sobre nós</a>
-            <a href="/html/consultation.html" data-page="consultation">Minhas consultas</a>
+            <a href="/html/consultas-agendadas.html" data-page="consultas-agendadas">Minhas consultas</a>
         ` : `
             <a href="/html/index.html" data-page="index">Home</a>
             <a href="/html/about.html" data-page="about">Sobre nós</a>

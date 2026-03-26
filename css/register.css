@@ -49,7 +49,6 @@
     display: none;
     position: relative;
     overflow: hidden;
-    background: #191c1d;
 }
 
 @media (min-width: 768px) {

@@ -1,0 +1,417 @@
+/* consultas-agendadas.css — Clinical Precision & Editorial Calm */
+
+body {
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+}
+
+/* ── Page ── */
+.consultas-page {
+    padding-top: 64px;
+    min-height: 100vh;
+}
+
+.consultas-page .wrapper {
+    padding: 56px 32px 80px;
+}
+
+/* ── Page Header ── */
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    font-family: var(--font-headline);
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-on-surface-variant);
+    line-height: 1.6;
+}
+
+.page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+/* ── Filter Tabs ── */
+.filter-tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-surface-low);
+    padding: 6px;
+    border-radius: 0.75rem;
+}
+
+.tab-btn {
+    padding: 8px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 0.5rem;
+    font-family: var(--font-headline);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-on-surface-variant);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--color-on-surface);
+}
+
+.tab-btn.active {
+    background: var(--color-surface-lowest);
+    color: var(--color-primary);
+    box-shadow: 0 2px 12px rgba(42, 52, 57, 0.08);
+}
+
+/* ── New Appointment Button ── */
+.btn-nova-consulta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dim) 100%);
+    color: #fff;
+    font-family: var(--font-headline);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    white-space: nowrap;
+}
+
+.btn-nova-consulta:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btn-nova-consulta .material-symbols-outlined {
+    font-size: 16px;
+}
+
+/* ── Table Header ── */
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+    padding: 0 28px 14px;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-on-surface-variant);
+    opacity: 0.6;
+}
+
+/* ── Consultas List ── */
+.consultas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ── Consulta Row ── */
+.consulta-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+    align-items: center;
+    padding: 20px 28px;
+    background: var(--color-surface-lowest);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 16px rgba(42, 52, 57, 0.04);
+    transition: box-shadow 0.22s, transform 0.16s;
+    border: 1px solid transparent;
+}
+
+.consulta-row:hover {
+    box-shadow: 0 8px 40px rgba(42, 52, 57, 0.09);
+    transform: translateY(-1px);
+    border-color: var(--color-outline-variant);
+}
+
+.consulta-row.cancelada {
+    opacity: 0.65;
+}
+
+/* Profissional column */
+.col-profissional-cell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.consulta-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.625rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dim) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+}
+
+.consulta-nome {
+    font-family: var(--font-headline);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-on-surface);
+    margin-bottom: 3px;
+}
+
+.consulta-id {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-on-surface-variant);
+    background: var(--color-surface-low);
+    padding: 2px 8px;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+/* Especialidade column */
+.badge-especialidade {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-primary-fixed-dim);
+    color: var(--color-on-surface);
+}
+
+/* Data & Hora column */
+.consulta-data-hora {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-on-surface);
+    line-height: 1.4;
+}
+
+.consulta-hora-sub {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-on-surface-variant);
+    margin-top: 2px;
+}
+
+/* Status column */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.badge-status.agendada {
+    background: #d3f5e0;
+    color: #1a5c35;
+}
+
+.badge-status.cancelada {
+    background: #ffdad6;
+    color: var(--color-error);
+}
+
+.badge-status .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* ── Loading State ── */
+.consultas-loading {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton-row {
+    height: 84px;
+    background: var(--color-surface-lowest);
+    border-radius: 0.75rem;
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(
+        90deg,
+        var(--color-surface-lowest) 0%,
+        var(--color-surface-low) 50%,
+        var(--color-surface-lowest) 100%
+    );
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ── Empty State ── */
+.consultas-vazio {
+    text-align: center;
+    padding: 72px 24px;
+    color: var(--color-on-surface-variant);
+}
+
+.consultas-vazio .material-symbols-outlined {
+    font-size: 52px;
+    color: var(--color-surface-high);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.consultas-vazio p {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.consultas-vazio a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dim) 100%);
+    color: #fff;
+    font-family: var(--font-headline);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.consultas-vazio a:hover {
+    opacity: 0.9;
+    color: #fff;
+}
+
+/* ── Stats Footer ── */
+.stats-footer {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 56px;
+    padding-top: 32px;
+    opacity: 0.55;
+    transition: opacity 0.25s;
+}
+
+.stats-footer:hover {
+    opacity: 1;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-left: 2px solid var(--color-primary);
+    padding-left: 18px;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-on-surface-variant);
+}
+
+.stat-value {
+    font-family: var(--font-headline);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-on-surface);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.stat-divider {
+    display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .consultas-page .wrapper {
+        padding: 40px 16px 64px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .consulta-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 18px 20px;
+    }
+
+    .stats-footer {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 520px) {
+    .filter-tabs {
+        flex: 1;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 8px 10px;
+        text-align: center;
+    }
+}
