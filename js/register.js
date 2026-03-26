@@ -69,8 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function register(nome, sobrenome, data_nascimento, genero, telefone, cpf, email, senha) {
     
-    console.log(genero)
-
     const userRegistration = {
         nome,
         sobrenome,

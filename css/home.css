@@ -1,96 +1,771 @@
-.box-agendar{
-    background: #fff;
-    padding:40px;
-    border-radius: 20px 0px 0px 20px;
-    height: 280px;
+/* =====================================================
+   HOME — design.md: "The Ethereal Clinic"
+   Manrope (headlines) + Inter (body/labels)
+   ===================================================== */
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+.material-symbols-outlined.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.main {
+    height: auto;
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+/* ===================================================
+   HERO
+   =================================================== */
+.hero {
+    position: relative;
+    min-height: calc(100vh - var(--navbar-height));
     display: flex;
     align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    background: #f7f9fb;
+}
+
+/* Imagem de fundo + gradiente overlay */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #f7f9fb 40%, rgba(247, 249, 251, 0.55) 65%, transparent 100%);
+}
+
+/* Conteúdo */
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 80px 80px 80px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.eyebrow-line {
+    width: 48px;
+    height: 1px;
+    background: #565e74;
+    flex-shrink: 0;
+}
+
+.eyebrow-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #566166;
+}
+
+/* Título */
+.hero-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #191c1d;
+    margin-bottom: 24px;
+}
+
+.hero-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: #565e74;
+}
+
+/* Descrição */
+.hero-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #566166;
+    max-width: 480px;
+    margin-bottom: 48px;
+}
+
+/* ---- Busca (guest) ---- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 6px rgba(42, 52, 57, 0.08);
+    padding: 6px 6px 6px 16px;
+    gap: 8px;
+    max-width: 480px;
+}
+
+.search-bar .material-symbols-outlined {
+    color: #717c82;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: #191c1d;
+    min-width: 0;
+}
+
+.search-bar input::placeholder {
+    color: #a9b4b9;
+}
+
+.btn-search {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #565e74 0%, #4a5268 100%);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 12px 24px;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.15s;
+    flex-shrink: 0;
+}
+
+.btn-search:hover {
+    opacity: 0.88;
+    color: #fff;
+    font-size: 0.85rem;
+    transform: translateY(-1px);
+}
+
+/* ---- CTA logado (hero) ---- */
+.hero-cta {
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
 }
 
-.btn-consulta{ 
-    margin-top: 15px; 
-    padding: 12px 25px; 
-    background: #0dbf9b; 
-    border: none; 
-    border-radius: 5px; 
-    color: white; 
-    font-size: 16px; 
-    cursor: pointer; 
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #565e74 0%, #4a5268 100%);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    padding: 15px 30px;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
 }
-.sobre-container{
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: #fff;
+    font-size: 0.92rem;
+}
+
+.btn-primary .material-symbols-outlined {
+    font-size: 1.05rem;
+}
+
+/* ===================================================
+   MÉTRICAS
+   =================================================== */
+.metrics-section {
+    background: #f0f4f7; /* surface-container-low */
+    padding: 64px 80px;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metric-number {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #2a3439;
+    line-height: 1;
+}
+
+.metric-number em {
+    font-style: normal;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #565e74;
+    margin-left: 2px;
+}
+
+.metric-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #566166;
+}
+
+/* ===================================================
+   ESPECIALIDADES — BENTO GRID
+   =================================================== */
+.specialties-section {
+    background: #f7f9fb; /* surface */
+    padding: 96px 80px;
+}
+
+.specialties-section-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho da seção */
+.specialties-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    gap: 40px;
+}
+
+.specialties-header-text h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #2a3439;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.specialties-header-text p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #566166;
+    line-height: 1.75;
+    max-width: 520px;
+}
+
+.specialties-view-all {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #565e74;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: gap 0.2s;
+}
+
+.specialties-view-all:hover {
+    gap: 10px;
+    color: #4a5268;
+    font-size: 0.85rem;
+}
+
+.specialties-view-all .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+/* ---- Bento Grid ---- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 340px 340px;
+    gap: 16px;
+}
+
+/* Base card */
+.bento-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* --- Neurologia (col 1-8, row 1) --- */
+.bento-neuro {
+    grid-column: span 8;
+    background: #ffffff;
+    display: flex;
+    position: relative;
+}
+
+.bento-neuro .card-content {
+    width: 50%;
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+}
+
+.bento-neuro .card-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.bento-neuro .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) opacity(0.5);
+    transition: filter 0.7s ease;
+}
+
+.bento-neuro:hover .card-image img {
+    filter: grayscale(0%) opacity(1);
+}
+
+/* --- Cardiovascular (col 9-12, row 1) --- */
+.bento-cardio {
+    grid-column: span 4;
+    background: #c8d8f3; /* tertiary-container */
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- Oncologia (col 1-4, row 2) --- */
+.bento-onco {
+    grid-column: span 4;
+    background: #e8eff3; /* surface-container */
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- Pediátrico (col 5-12, row 2) --- */
+.bento-ped {
+    grid-column: span 8;
+    background: #ffffff;
+    display: flex;
+}
+
+.bento-ped .card-content {
+    flex: 1;
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.bento-ped .card-image {
+    flex: 1;
+    margin: 8px 8px 8px 0;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    background: rgba(207, 220, 227, 0.2);
+}
+
+.bento-ped .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Tipografia dos cards */
+.bento-card .card-icon {
+    font-size: 1.6rem;
+    color: #565e74;
+    flex-shrink: 0;
+}
+
+.bento-cardio .card-icon {
+    color: #3c4c61; /* on-tertiary-container */
+}
+
+.bento-card h4 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: #2a3439;
+}
+
+.bento-neuro h4,
+.bento-ped h4 { font-size: 1.4rem; }
+
+.bento-cardio h4,
+.bento-onco h4 { font-size: 1.2rem; }
+
+.bento-cardio h4 { color: #3c4c61; }
+
+.bento-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #566166;
+}
+
+.bento-cardio p { color: rgba(60, 76, 97, 0.8); }
+
+.bento-card .card-link {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #565e74;
+    text-decoration: none;
+    border-bottom: 1px solid #a9b4b9;
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: border-color 0.2s;
+}
+
+.bento-card .card-link:hover {
+    border-color: #565e74;
+    color: #565e74;
+    font-size: 0.78rem;
+}
+
+.bento-onco .card-link {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Indicador "ao vivo" */
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #506076; /* tertiary */
+    animation: pulse-dot 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.45; transform: scale(0.85); }
+}
+
+.live-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #3c4c61;
+}
+
+/* ---- CTA do bento "Acessar Agendamentos" ---- */
+.bento-cta {
+    margin-top: 80px;
     display: flex;
     justify-content: center;
+}
+
+.btn-bento-cta {
+    display: inline-flex;
     align-items: center;
-    min-height: 80vh;
+    gap: 14px;
+    background: #565e74;
+    color: #f7f7ff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 22px 44px;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    box-shadow: 0 20px 60px rgba(86, 94, 116, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.sobre-box{
-    max-width: 700px;
-    background: rgba(255,255,255,0.92);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+.btn-bento-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 64px rgba(86, 94, 116, 0.28);
+    color: #f7f7ff;
+    font-size: 1.1rem;
 }
 
-.sobre-box h1{
-    margin-bottom: 20px;
+.btn-bento-cta:active {
+    transform: scale(0.98);
 }
 
-.sobre-box p{
-    margin-bottom: 15px;
-    line-height: 1.6;
+.btn-bento-cta .icon-main {
+    font-size: 1.6rem;
+    font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
 
-.container {
+.btn-bento-cta .icon-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.btn-bento-cta:hover .icon-arrow {
+    transform: translateX(4px);
+}
+
+/* ===================================================
+   CTA FINAL
+   =================================================== */
+.cta-section {
+    padding: 0 80px 96px;
+    background: #f7f9fb;
+}
+
+.cta-banner {
+    background: linear-gradient(135deg, #565e74 0%, #4a5268 100%);
+    border-radius: 1.5rem;
+    padding: 80px 80px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
-    height: 360px;
-    background: #26667f9e;
-    border-radius: 30px;
-    /* padding: 0px 0em 0px 30px; */
-    /* position: relative; */
+    gap: 48px;
 }
 
-.box-info {
-    width: 50%;
+/* Orb decorativo */
+.cta-orb {
+    position: absolute;
+    top: -48%;
+    right: -6%;
+    width: 380px;
+    height: 380px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    filter: blur(48px);
+    pointer-events: none;
+}
+
+.cta-text {
+    position: relative;
+    z-index: 1;
+    max-width: 580px;
+}
+
+.cta-text h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
     color: #fff;
-    font-size: 1.2em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
 }
 
-.box-info p {
-    width: 85%;
-    letter-spacing: 0.5px;
-    margin-top: 2em;
+.cta-text p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.75;
+    margin-bottom: 36px;
 }
 
-.box-agendar h1 {
-    color: #124170;
+.cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-.box-guest h1 {
-    font-size: 1.3em;
-}
-
-.box-guest p {
-    color: #444;
-    font-size: 0.95em;
-    margin: 8px 0 4px;
-    text-align: center;
-}
-
-.link-cadastro-home {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.85em;
-    color: #124170;
+.btn-cta-primary {
+    background: #fff;
+    color: #565e74;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 13px 26px;
+    border-radius: 0.25rem;
     text-decoration: none;
+    transition: opacity 0.2s;
 }
 
-.link-cadastro-home:hover {
-    text-decoration: underline;
+.btn-cta-primary:hover {
+    opacity: 0.9;
+    color: #565e74;
+    font-size: 0.88rem;
 }
+
+.btn-cta-ghost {
+    background: transparent;
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 13px 26px;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    border: 1px solid rgba(194, 198, 212, 0.3);
+    transition: background 0.2s;
+}
+
+.btn-cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.88rem;
+}
+
+/* Widget de status lateral */
+.cta-widget {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 280px;
+    background: rgba(200, 216, 243, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 28px;
+}
+
+.cta-widget-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.cta-widget-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #506076;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cta-widget-icon .material-symbols-outlined {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.cta-widget-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2px;
+}
+
+.cta-widget-status {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Eyebrow label acima do título */
+.cta-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 12px;
+}
+
+/* Checklist dentro do widget */
+.cta-widget-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cta-check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.3;
+}
+
+.cta-check-icon {
+    font-size: 1rem;
+    color: #C8D8F3;
+    flex-shrink: 0;
+}
+
+/* Mantidos para compatibilidade (não usados no CTA atual) */
+.cta-widget-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cta-bar-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.cta-bar-fill {
+    height: 100%;
+    background: #506076;
+    border-radius: 999px;
+}
+

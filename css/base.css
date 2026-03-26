@@ -1,3 +1,23 @@
+:root {
+    --color-primary:            #565E74;
+    --color-primary-dim:        #4A5268;
+    --color-surface:            #F7F9FB;
+    --color-surface-low:        #F0F4F7;
+    --color-surface-lowest:     #FFFFFF;
+    --color-surface-container:  #edeeef;
+    --color-surface-high:       #E1E9EE;
+    --color-on-surface:         #2A3439;
+    --color-on-surface-variant: #566166;
+    --color-outline-variant:    rgba(169, 180, 185, 0.15);
+    --color-tertiary:           #506076;
+    --color-tertiary-container: #C8D8F3;
+    --color-surface-dim:        #CFDCE3;
+    --color-primary-fixed-dim:  #CCD4EE;
+    --color-error:              #ba1a1a;
+    --font-headline:            'Manrope', sans-serif;
+    --font-body:                'Inter', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,15 +30,41 @@ a {
 }
 
 a:hover {
-    color: #22aa89;
-    font-size: 1.1em;
+    color: var(--color-primary);
 }
 
-body{
-    font-family: Roboto, sans-serif
+body {
+    font-family: var(--font-body);
 }
+
 .wrapper {
     max-width: 1350px;
     width: 100%;
     margin: 0 auto;
+}
+
+/* ===== POPUP DE FEEDBACK (compartilhado) ===== */
+.form-popup {
+    display: none;
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.form-popup.show {
+    display: block;
+}
+
+.form-popup.error {
+    background: #ffdad6;
+    color: var(--color-error);
+}
+
+.form-popup.success {
+    background: #e5fff5;
+    color: #0f5c3f;
 }

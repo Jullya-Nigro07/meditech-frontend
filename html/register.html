@@ -1,69 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/register.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <title>Cadastro - Meditech</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>Cadastro — MediTech</title>
 </head>
 
 <body>
     <app-navbar></app-navbar>
 
-    <div class="main-register">
-            <div class="wrapper">
-                        <div class="container-infos">
+    <main class="register-main">
 
-                <div class="forms">
-                    <h1 id="tituloPagina">Realize seu Cadastro para Agendar</h1>
-                    <div id="formPopup" class="form-popup" role="alert" aria-live="polite"></div>
-                    <form>
-                        <input id="nome" type="text" placeholder="Nome" required>
-                        <input id="sobrenome" type="text" placeholder="Sobrenome" required>
+        <!-- Seção esquerda: formulário (45%) -->
+        <section class="register-form-section">
+            <div class="register-form-inner">
 
-                        <label>Data de nascimento</label>
-                        <input id="dataNasc" type="date" required placeholder="Data Nascimento">
-                        <script>
-                            flatpickr("#dataNasc", {
-                                dateFormat: "Y-m-d",
-                                allowInput: false   // impede digitar manualmente
-                            });
-                        </script>
-
-                        <label>Gênero</label>
-                        
-                        <select id="genero" required>
-                            <option value="">Selecione</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="prefiro_nao_informar">Prefiro não Informar</option>
-                            <option value="outro">Outro</option>
-                        </select>
-
-                        <input id="telefone" type="tel" placeholder="Telefone" required>
-                        <input id="cpf" type="text" placeholder="CPF" required>
-                        <input id="email" type="email" placeholder="Email" required>
-                        <input id="senha" type="password" placeholder="Senha" required>
-
-                        <button id="botaoCadastrarUser" type="submit">Cadastrar</button>
-                    <a href="login.html">Já possui cadastro? Vá para o Login</a>
-                    </form>
+                <!-- Identidade visual -->
+                <div class="auth-brand">
+                    <div class="auth-brand-icon">
+                        <span class="material-symbols-outlined">medical_services</span>
+                    </div>
+                    <span class="auth-brand-name">MediTech</span>
                 </div>
-                <div class="hospital-png">
-                <img src="/png/hospital.png" alt="Hospital" title="Hospital">
+
+                <h1 class="auth-title">Crie sua conta</h1>
+                <p class="auth-subtitle">Insira seus dados para começar sua jornada na medicina de precisão.</p>
+
+                <!-- Formulário -->
+                <form class="auth-form" novalidate>
+
+                    <div id="formPopup" class="form-popup" role="alert" aria-live="polite"></div>
+
+                    <!-- Nome / Sobrenome -->
+                    <div class="register-grid-2">
+                        <div class="auth-field">
+                            <label class="auth-label" for="nome">Nome</label>
+                            <input id="nome" class="auth-input" type="text"
+                                placeholder="João" required autocomplete="given-name">
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-label" for="sobrenome">Sobrenome</label>
+                            <input id="sobrenome" class="auth-input" type="text"
+                                placeholder="Silva" required autocomplete="family-name">
+                        </div>
+                    </div>
+
+                    <!-- Data de Nascimento / Gênero -->
+                    <div class="register-grid-2">
+                        <div class="auth-field">
+                            <label class="auth-label" for="dataNasc">Data de Nascimento</label>
+                            <input id="dataNasc" class="auth-input" type="date" required>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-label" for="genero">Gênero</label>
+                            <select id="genero" class="auth-input auth-select" required>
+                                <option value="">Selecionar</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="prefiro_nao_informar">Prefiro não informar</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="auth-field">
+                        <label class="auth-label" for="email">E-mail</label>
+                        <input id="email" class="auth-input" type="email"
+                            placeholder="joao.silva@exemplo.com" required autocomplete="email">
+                    </div>
+
+                    <!-- CPF / Telefone -->
+                    <div class="register-grid-2">
+                        <div class="auth-field">
+                            <label class="auth-label" for="cpf">CPF</label>
+                            <input id="cpf" class="auth-input" type="text"
+                                placeholder="000.000.000-00" required autocomplete="off">
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-label" for="telefone">Telefone</label>
+                            <input id="telefone" class="auth-input" type="tel"
+                                placeholder="(11) 99999-9999" required autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <!-- Senha -->
+                    <div class="auth-field">
+                        <label class="auth-label" for="senha">Senha</label>
+                        <input id="senha" class="auth-input" type="password"
+                            placeholder="••••••••" required autocomplete="new-password">
+                    </div>
+
+                    <button id="botaoCadastrarUser" class="auth-btn" type="submit">Criar Conta</button>
+
+                </form>
+
+                <!-- Link para login -->
+                <div class="register-form-footer">
+                    <p class="auth-redirect-text">
+                        Já tem uma conta?
+                        <a href="/html/login.html">Entrar</a>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção direita: imagem escura (55%) -->
+        <section class="register-visual-section" aria-hidden="true">
+            <img class="register-visual-img" src="/png/cadastro-paciente.png" alt="Clínica médica moderna">
+            <div class="register-visual-overlay"></div>
+
+            <!-- Conteúdo narrativo -->
+            <div class="register-visual-content">
+                <div class="register-visual-eyebrow">
+                    <span class="eyebrow-line"></span>
+                    <span class="eyebrow-text">Inovação Clínica</span>
+                </div>
+                <h2 class="register-visual-headline">
+                    A precisão que salva vidas, a <strong>tecnologia</strong> que humaniza o cuidado.
+                </h2>
+                <div class="register-pulse-badge">
+                    <span class="register-pulse-dot"></span>
+                    <span class="register-pulse-label">Monitoramento de Dados em Tempo Real Ativo</span>
                 </div>
             </div>
-        </div>
 
-    </div>
-    
+            <!-- Card flutuante decorativo -->
+            <div class="register-security-card">
+                <span class="material-symbols-outlined register-security-icon">verified_user</span>
+                <div>
+                    <p class="register-security-title">Segurança de Dados</p>
+                    <p class="register-security-desc">Protocolos de criptografia de nível militar para cada registro.</p>
+                </div>
+            </div>
+        </section>
 
-</body>
+    </main>
+
+    <app-footer></app-footer>
 
     <script src="/js/navbar.js"></script>
+    <script src="/js/footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#dataNasc", {
+            dateFormat: "Y-m-d",
+            allowInput: false
+        });
+    </script>
     <script src="/js/register.js"></script>
+</body>
+
 </html>

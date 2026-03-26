@@ -38,8 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeUsuario = document.getElementById("nomeUsuario");
     const userJson = localStorage.getItem("user");
     if (userJson && nomeUsuario) {
-        const user = JSON.parse(userJson);
-        nomeUsuario.innerText = user.nome;
+        try {
+            const user = JSON.parse(userJson);
+            nomeUsuario.innerText = user.nome;
+        } catch {
+            localStorage.removeItem("user");
+        }
     }
 
     const emailLogin = document.getElementById("emailLogin");
@@ -52,11 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
             senhaLogin.value = senhaSalva;
         }
     }
-    if (document.getElementById("lista-consultas")) {
-        carregarConsultas();
-    }
-
-
     const botaoLogin = document.getElementById("botaoLogin")
 
     if (botaoLogin) {
@@ -79,7 +78,7 @@ async function login(email, senha) {
         senha
     };
 
-    const response = await fetch('http://127.0.0.1:5000/usuarios/login', {
+    const response = await fetch('http://127.0.0.1:5000/auth/login', {
         method: "POST",
         headers,
         body: JSON.stringify(userLogin)

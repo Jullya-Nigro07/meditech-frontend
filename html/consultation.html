@@ -2,85 +2,94 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/coonsultation.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <title>Agendar Consulta - Meditech</title>
+    <title>Agende seu Especialista — MediTech</title>
 </head>
-
 <body>
-<app-navbar></app-navbar>
+    <app-navbar></app-navbar>
 
-<div class="main-consultation">
-    <div class="wrapper">
-    <div class="container-agendamento">
-        <div class="boas-vindas" id="boasVindas">
-            <h2>Olá <span id="nomeUsuario"></span></h2>
-        </div>
+    <main class="medicos-page">
 
-        <div class="area-consulta">
-            <div class="forms">
-                <h1 id="tituloPagina">Agendar Consulta</h1>
-                <form id="formConsulta">
-                    <label>Especialidade</label>
-                    <select id="especialidade" required>
-                        <option disabled selected>Selecione uma especialidade</option>
-                        <option>Clínico Geral</option>
-                        <option>Cardiologista</option>
-                        <option>Dermatologista</option>
-                        <option>Ginecologista</option>
-                        <option>Oftalmologista</option>
-                        <option>Pediatra</option>
-                        <option>Ortopedista</option>
-                        <option>Neurologista</option>
-                        <option>Endocrinologista</option>
-                        <option>Psiquiatra</option>
-                        <option>Dentista</option>
+        <section class="filtros-section">
+            <div class="filtros-pill">
+                <div class="filtro-item">
+                    <span class="filtro-label">Especialidade</span>
+                    <select id="filtroEspecialidade" class="filtro-valor">
+                        <option value="">Todas</option>
                     </select>
-
-                    <label>Médico</label>
-                    <select id="medico" required>
-                        <option disabled selected>Selecione um médico</option>
+                </div>
+                <div class="filtro-divider"></div>
+                <div class="filtro-item">
+                    <span class="filtro-label">Período</span>
+                    <select id="filtroPeriodo" class="filtro-valor">
+                        <option value="">Qualquer período</option>
+                        <option value="manha">Manhã</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
                     </select>
+                </div>
+                <div class="filtro-divider"></div>
+                <div class="filtro-item">
+                    <span class="filtro-label">Data</span>
+                    <input type="text" id="filtroData" class="filtro-valor" placeholder="Qualquer data" readonly>
+                </div>
+                <button id="btnBuscar" class="btn-buscar" type="button">
+                    <span class="material-symbols-outlined">search</span>
+                    Buscar
+                </button>
+            </div>
+            <div id="toastFiltros" class="toast-filtros"></div>
+            <div class="badge-especialistas">
+                <span class="badge-dot"></span>
+                <span id="contagemEspecialistas">Selecione os filtros para buscar</span>
+            </div>
+        </section>
 
-                    <label>Data</label>
-                    <input type="text" id="dataConsulta" placeholder="Clique para escolher a data">
+        <section class="medicos-lista" id="listaMedicos"></section>
 
-                    <script>
-                        flatpickr("#dataConsulta", {
-                            minDate: "today",        // datas passadas ficam cinza
-                            disable: [
-                                function(date) {
-                                    return date.getDay() === 0; // desabilita domingos
-                                }
-                            ],
-                            dateFormat: "Y-m-d",
-                            allowInput: false          // impede digitar manualmente
-                        });
-                    </script>
+    </main>
 
-                    <label>Horário</label>
+    <!-- Modal de agendamento -->
+    <div id="modalAgendamento" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Agendar Consulta</h2>
+                <button id="fecharModal" class="btn-fechar" type="button">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="modalMedicoInfo" class="modal-medico-info"></div>
+            <form id="formConsulta" class="modal-form">
+                <div id="formPopup" class="form-popup"></div>
+                <div class="form-group">
+                    <label for="dataConsulta">Data</label>
+                    <input type="text" id="dataConsulta" placeholder="Selecione a data" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horário</label>
                     <select id="horario" required>
                         <option disabled selected>Selecione um horário</option>
                     </select>
-
-                    <button id="botaoAgendar" type="submit">Agendar</button>
-                </form>
-            </div>
-
-            <div class="resumo-consulta">
-                <h2 class="consultas-text">Consultas</h2>
-                <div id="lista-consultas"></div> <!-- já terá rolagem pelo CSS -->
-            </div>
-        </div>
+                </div>
+                <button type="submit" id="botaoAgendar" class="btn-confirmar">Confirmar Agendamento</button>
+            </form>
         </div>
     </div>
-</div>
-<script src="/js/especialidade_medico.js"></script>
-<script src="/js/navbar.js"></script>
-<script src="/js/consultation.js"></script>
+
+    <app-footer></app-footer>
+
+    <script src="/js/especialidade_medico.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/footer.js"></script>
+    <script src="/js/consultation.js"></script>
 </body>
 </html>

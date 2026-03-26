@@ -1,118 +1,134 @@
-/* login.css */
+/* login.css — layout e painel visual (estilos do formulário em auth.css) */
 
-/* Centraliza o formulário na tela */
-.main-login {
-      width: 100%;
-      height: 100vh;
-      background: #26667F;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+/* ===== LAYOUT DIVIDIDO ===== */
+.login-main {
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
 }
-.forms {
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    padding: 40px;
-    border-radius: 10px;
-    width: 65%;
-    height: 20em;
+
+.login-form-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 48px;
+    background: var(--color-surface-lowest);
+}
+
+@media (min-width: 768px) {
+    .login-form-section {
+        width: 45%;
+        padding: 64px 80px;
+    }
+}
+
+.login-form-inner {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* ===== ELEMENTOS EXCLUSIVOS DO LOGIN ===== */
+.login-forgot {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.login-forgot:hover {
+    opacity: 0.7;
+}
+
+.login-form-footer {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-outline-variant);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-secure-badge {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    background: rgba(80, 96, 118, 0.08);
+    padding: 6px 16px;
+    border-radius: 100px;
 }
 
-/* Títulos */
-.forms h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.secure-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-tertiary);
+    animation: pulse-secure 2s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
-/* Inputs */
-.forms input {
-    width: 60%;
-    padding: 10px;
-    margin-bottom: 12px;
-    background: #fefefe !important;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+@keyframes pulse-secure {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
 }
 
-/* Botão principal */
-.forms button {
-    width: 65%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #0dbf9b;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
+.secure-label {
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-tertiary);
 }
 
-.forms button:hover {
-    opacity: 0.8;
-}
-
-/* Link de cadastro */
-.link-cadastro {
-    text-align: center;
-    margin-top: 12px;
-}
-
-.link-cadastro a {
-    color: #0dbf9b;
-    text-decoration: none;
-}
-
-.link-cadastro a:hover {
-    opacity: 0.8;
-}
-
-form {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-}
-
-form h2 {
-    margin-bottom: 20px;
-    color: #0dbd99;
-}
-
-.desenho-forms {
-    width: 40%;
-}
-
-.desenho-forms img {
-    width: 95%;
-}
-
-.form-popup {
+/* ===== SEÇÃO VISUAL (direita) ===== */
+.login-visual-section {
     display: none;
-    width: 90%;
-    margin: -4px 0 12px;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 0.9em;
-    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface-low);
 }
 
-.form-popup.show {
-    display: block;
+@media (min-width: 768px) {
+    .login-visual-section {
+        display: block;
+        width: 55%;
+    }
 }
 
-.form-popup.error {
-    background: #ffe5e5;
-    border: 1px solid #e85a5a;
-    color: #8f1f1f;
+.login-visual-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.82;
 }
 
-.form-popup.success {
-    background: #e5fff5;
-    border: 1px solid #32a87b;
-    color: #0f5c3f;
+.login-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(247, 249, 251, 0.4) 0%, transparent 55%);
+}
+
+.login-visual-quote {
+    position: absolute;
+    bottom: 48px;
+    right: 48px;
+    max-width: 280px;
+    text-align: right;
+    font-family: var(--font-headline);
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--color-on-surface-variant);
+    border: none;
+    padding: 0;
+    margin: 0;
 }

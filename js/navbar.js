@@ -1,60 +1,81 @@
 class AppNavbar extends HTMLElement {
     connectedCallback() {
         this.render();
-        this.mountLinks();
+        this.mountLogout();
+        this.highlightActive();
+    }
+
+    _getUserData() {
+        try {
+            const raw = localStorage.getItem("user");
+            if (!raw) return null;
+            const user = JSON.parse(raw);
+            const nome = user.nome || user.name || "Usuário";
+            return { nome, inicial: nome.charAt(0).toUpperCase() };
+        } catch {
+            return null;
+        }
     }
 
     render() {
+        const token = localStorage.getItem("token");
+        const userData = this._getUserData();
+
+        const navLinks = token ? `
+            <a href="/html/index.html" data-page="index">Home</a>
+            <a href="/html/about.html" data-page="about">Sobre nós</a>
+            <a href="/html/consultas-agendadas.html" data-page="consultas-agendadas">Minhas consultas</a>
+        ` : `
+            <a href="/html/index.html" data-page="index">Home</a>
+            <a href="/html/about.html" data-page="about">Sobre nós</a>
+        `;
+
+        const navEnd = token && userData ? `
+            <div class="navbar-user">
+                <div class="navbar-avatar">${userData.inicial}</div>
+                <span class="navbar-username">${userData.nome}</span>
+                <button class="navbar-logout" id="navbar-logout">Sair</button>
+            </div>
+        ` : `
+            <div class="navbar-auth">
+                <a href="/html/login.html" class="navbar-link-auth" data-page="login">Login</a>
+                <a href="/html/register.html" class="navbar-btn-register" data-page="register">Cadastrar-se</a>
+            </div>
+        `;
+
         this.innerHTML = `
-            <header>
-                <div class="wrapper">
-                    <nav>
-                        <img class="logo" src="/png/logo-meditech.png" alt="Logo Meditech">
-                        <ul class="header"></ul>
-                    </nav>
+            <nav class="navbar">
+                <div class="navbar-inner">
+                    <div class="navbar-start">
+                        <a href="/html/index.html" class="navbar-logo">
+                            <img src="/png/logo.png" alt="MediTech">
+                        </a>
+                        <div class="navbar-links">${navLinks}</div>
+                    </div>
+                    <div class="navbar-end">${navEnd}</div>
                 </div>
-            </header>
+            </nav>
         `;
     }
 
-    mountLinks() {
-        const navList = this.querySelector("ul.header");
-        if (!navList) return;
+    mountLogout() {
+        const btn = this.querySelector("#navbar-logout");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.href = "/html/index.html";
+        });
+    }
 
-        const token = localStorage.getItem("token");
-
-        const createNavItem = (href, text, id) => {
-            const item = document.createElement("li");
-            const link = document.createElement("a");
-            link.href = href;
-            link.textContent = text;
-            if (id) link.id = id;
-            item.appendChild(link);
-            return item;
-        };
-
-        navList.innerHTML = "";
-        navList.appendChild(createNavItem("index.html", "Home"));
-        navList.appendChild(createNavItem("about.html", "Sobre nos"));
-
-        if (token) {
-            navList.appendChild(createNavItem("consultation.html", "Minhas consultas"));
-
-            const logoutItem = createNavItem("#", "Sair", "logout-link");
-            const logoutLink = logoutItem.querySelector("a");
-            logoutLink.addEventListener("click", (event) => {
-                event.preventDefault();
-                localStorage.removeItem("token");
-                localStorage.removeItem("user");
-                window.location.href = "index.html";
-            });
-
-            navList.appendChild(logoutItem);
-            return;
-        }
-
-        navList.appendChild(createNavItem("login.html", "Login"));
-        navList.appendChild(createNavItem("register.html", "Cadastrar-se"));
+    highlightActive() {
+        const path = window.location.pathname;
+        const links = this.querySelectorAll(".navbar-links a[data-page]");
+        links.forEach(a => {
+            if (path.includes(a.dataset.page)) {
+                a.classList.add("active");
+            }
+        });
     }
 }
 

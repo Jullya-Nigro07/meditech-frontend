@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/consultas-agendadas.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>Minhas Consultas — MediTech</title>
+</head>
+<body>
+    <app-navbar></app-navbar>
+
+    <main class="consultas-page">
+
+        <div class="wrapper">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-text">
+                    <h1 class="page-title">Minhas Consultas</h1>
+                    <p class="page-subtitle">Acompanhe e gerencie suas consultas agendadas.</p>
+                </div>
+                <div class="page-header-actions">
+                    <div class="filter-tabs" id="filterTabs">
+                        <button class="tab-btn active" data-filter="todas">Todas</button>
+                        <button class="tab-btn" data-filter="proximas">Próximas</button>
+                        <button class="tab-btn" data-filter="canceladas">Canceladas</button>
+                    </div>
+                    <a href="/html/consultation.html" class="btn-nova-consulta">
+                        <span class="material-symbols-outlined">add</span>
+                        Agendar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Table Header -->
+            <div class="table-header">
+                <div class="col-profissional">Profissional</div>
+                <div class="col-especialidade">Especialidade</div>
+                <div class="col-data">Data &amp; Hora</div>
+                <div class="col-status">Status</div>
+            </div>
+
+            <!-- Consultation List -->
+            <div id="consultasList" class="consultas-list">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Stats Footer -->
+            <div id="statsFooter" class="stats-footer" style="display:none;">
+                <div class="stat-item">
+                    <span class="stat-label">Total de Consultas</span>
+                    <span class="stat-value" id="statTotal">0</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-label">Próximas</span>
+                    <span class="stat-value" id="statProximas">0</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-label">Canceladas</span>
+                    <span class="stat-value" id="statCanceladas">0</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+
+    <script src="/js/navbar.js"></script>
+    <script src="/js/footer.js"></script>
+    <script src="/js/consultas-agendadas.js"></script>
+</body>
+</html>

@@ -1,134 +1,203 @@
-.main-register
-{
-    padding: 5em 0;
-    background-color: #124170;
-}
-.forms {
-    background: #67C090;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border-radius: 10px;
-    width: 40em;
-    height: 40em;
+/* register.css — layout e painel visual (estilos do formulário em auth.css) */
+
+/* ===== LAYOUT DIVIDIDO ===== */
+.register-main {
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.register-form-section {
+    width: 100%;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    padding: 48px 48px 64px;
+    background: var(--color-surface);
+    overflow-y: auto;
 }
 
-/* Títulos */
-.forms h1 {
+@media (min-width: 768px) {
+    .register-form-section {
+        width: 45%;
+        padding: 56px 72px 64px;
+        justify-content: center;
+    }
+}
+
+.register-form-inner {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* ===== GRADE DE 2 COLUNAS (exclusivo do cadastro) ===== */
+.register-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ===== RODAPÉ DO FORMULÁRIO ===== */
+.register-form-footer {
+    margin-top: 28px;
     text-align: center;
-    margin-bottom: 20px;
-    color: #fff;
-    /* width: 50%; */
 }
 
-.form-popup {
+/* ===== SEÇÃO VISUAL ESCURA (direita) ===== */
+.register-visual-section {
     display: none;
-    width: 85%;
-    margin: -8px 0 14px;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 0.9em;
-    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
 }
 
-.form-popup.show {
-    display: block;
+@media (min-width: 768px) {
+    .register-visual-section {
+        display: block;
+        width: 55%;
+    }
 }
 
-.form-popup.error {
-    background: #ffe5e5;
-    border: 1px solid #e85a5a;
-    color: #8f1f1f;
-}
-
-.form-popup.success {
-    background: #e5fff5;
-    border: 1px solid #32a87b;
-    color: #0f5c3f;
-}
-
-/* Inputs e selects */
-.forms input,
-.forms select {
+.register-visual-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    mix-blend-mode: luminosity;
 }
 
-/* Labels */
-.forms label {
-    margin-bottom: 5px;
-    font-weight: 500;
-    width: 100%;
-    color: #fefefe;
-    font-size: 0.9em;
+.register-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(25, 28, 29, 0.88) 0%, transparent 60%);
 }
 
-/* Botão principal */
-.forms button {
-    width: 50%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #124170;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+.register-visual-content {
+    position: absolute;
+    bottom: 56px;
+    left: 56px;
+    right: 56px;
+    z-index: 10;
 }
 
-.forms button:hover {
-    opacity: 0.8;
-}
-
-/* Link de login */
-.forms a {
-    display: block;
-    text-align: center;
-    margin-top: 12px;
-    color: #124170;
-    font-size: 0.9em;
-}
-
-.forms a:hover {
-    opacity: 0.8;
-}
-
-form {
+.register-visual-eyebrow {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.eyebrow-line {
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: rgba(204, 212, 238, 0.6);
+    flex-shrink: 0;
+}
+
+.eyebrow-text {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(204, 212, 238, 0.8);
+}
+
+.register-visual-headline {
+    font-family: var(--font-headline);
+    font-size: 2.4rem;
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #f7f9fb;
+    margin-bottom: 32px;
+}
+
+.register-visual-headline strong {
+    font-weight: 800;
+}
+
+.register-pulse-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(240, 244, 247, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.register-pulse-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-tertiary);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.register-pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-tertiary);
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0%   { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.register-pulse-label {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    color: rgba(247, 249, 251, 0.8);
+    letter-spacing: 0.02em;
+}
+
+.register-security-card {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 24px;
+    display: flex;
     flex-direction: column;
-    width: 85%;
-    text-align: left !important;
+    gap: 12px;
+    max-width: 200px;
+    transform: rotate(3deg);
 }
 
-select#genero {
-    width: 565px !important;
+.register-security-icon {
+    font-size: 28px;
+    color: rgba(204, 212, 238, 0.85);
 }
 
-label {display: flex;align-items: center;}
-
-.forms a:hover {
-    font-size: 0.92em;
-    color: #fff;
-    transition: .5s ease;
+.register-security-title {
+    font-family: var(--font-headline);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #f7f9fb;
+    margin: 0;
+    letter-spacing: -0.01em;
 }
 
-.hospital-png {
-    width: 30em;
-}
-
-.hospital-png img {
-    width: 100%;
-}
-
-.container-infos {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.register-security-desc {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: rgba(247, 249, 251, 0.55);
+    line-height: 1.5;
+    margin: 0;
 }
